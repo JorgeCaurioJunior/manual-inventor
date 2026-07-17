@@ -155,12 +155,36 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
 
 .ft{background:var(--bg2);border-top:1px solid var(--dv);padding:1.2rem 2rem;text-align:center;font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.06em;color:var(--mu)}
 
+/* ONDE COMPRAR */
+.oc{margin-top:.9rem}
+.oc-h{font-family:'Courier New',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem}
+.oc-h::before{content:'🛒 '}
+.oc-g{border:1px solid var(--bor);border-radius:3px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.oc-i{padding:.32rem .7rem;border-bottom:1px solid var(--dv);display:flex;justify-content:space-between;align-items:baseline;gap:.4rem;font-size:.8rem;background:var(--bg2)}
+.oc-i:last-child{border-bottom:none}
+.oc-nm{flex:1}
+.oc-w{font-family:'Courier New',monospace;font-size:.68rem;color:var(--a2);margin-left:.25rem}
+.oc-p{font-family:'Courier New',monospace;font-size:.68rem;color:var(--mu);white-space:nowrap;flex-shrink:0}
+
+/* BOTÃO EXPANDIR DIAGRAMA */
+.dw{position:relative}
+.xbtn{position:absolute;top:.45rem;right:.45rem;background:var(--bg);border:1px solid var(--bor);border-radius:3px;padding:.18rem .45rem;font-size:.72rem;cursor:pointer;color:var(--mu);font-family:'Courier New',monospace;line-height:1.2;z-index:2;opacity:.75;letter-spacing:.04em}
+.xbtn:hover,.xbtn:focus{opacity:1;background:var(--bor);outline:none}
+.xover{display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;padding:1rem;align-items:center;justify-content:center}
+.xover.on{display:flex}
+.xover svg{width:100%;max-width:min(95vw,900px);height:auto;max-height:92vh}
+.xcl{position:fixed;top:.6rem;right:.6rem;background:var(--a1);color:#fff;border:none;border-radius:3px;padding:.35rem .8rem;font-size:.85rem;cursor:pointer;font-family:'Courier New',monospace;z-index:10000;letter-spacing:.05em}
+
 @media(max-width:700px){
-  .hd,.mn{padding-left:1.2rem;padding-right:1.2rem}
+  .hd,.mn{padding-left:.6rem;padding-right:.6rem}
   .cml{grid-template-columns:1fr}
-  .mb{padding:.8rem 1.2rem}
+  .mb{padding:.8rem .6rem}
   .pc.open .cbi{grid-template-columns:1fr;grid-template-rows:auto}
-  .pc.open .dw{grid-column:1;grid-row:auto}
+  .pc.open .dw{grid-column:1;grid-row:auto;order:-1;margin-bottom:.8rem}
+  .dw{padding:.5rem .5rem}
+  .ps{height:58vw}
+  .oc-g{grid-template-columns:1fr}
+  .mb2 ul{grid-template-columns:1fr}
 }
 </style>
 
@@ -251,12 +275,23 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>Papelão duplo (chassis)</li><li>4 tampas PET (rodas)</li><li>2 canudos (eixos)</li><li>2 palitos churrasco</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Chassis: retângulo 20×8 cm de papelão duplo, laterais dobradas 1 cm para rigidez.</li>
-    <li data-n="2.">Cole 2 canudos sob o chassis (frente e trás) — eles ficam fixos na estrutura.</li>
-    <li data-n="3.">Passe um palito por cada canudo. O palito deve girar livremente dentro do canudo.</li>
-    <li data-n="4.">Cole as tampas PET nas extremidades dos palitos com cola quente generosa. Teste o giro.</li>
-    <li data-n="5.">Molde capô e aerofólio com papelão úmido dobrado. Cole após secar. Pinte.</li>
+    <li data-n="1."><strong>Chassis:</strong> Recorte um retângulo de 20×8 cm de papelão duplo. Marque 1 cm nas laterais longas e dobre para cima — isso trava os canudos e dá rigidez ao carro.</li>
+    <li data-n="2."><strong>Eixos:</strong> Cole 2 pedaços de canudo de 10 cm embaixo do chassis, um perto da frente e outro da traseira. Os canudos devem ficar perpendiculares ao comprimento do carro.</li>
+    <li data-n="3."><strong>Palitos:</strong> Passe um palito de churrasco por dentro de cada canudo. Deixe 1,5 cm sobrando de cada lado. O palito GIRA dentro do canudo fixo — não cole o palito.</li>
+    <li data-n="4."><strong>Rodas:</strong> Cole 4 tampas PET nas pontas dos palitos com cola quente. Coloque cola em volta do buraco central. Espere secar e teste: as rodas devem girar junto com o palito.</li>
+    <li data-n="5."><strong>Carroceria:</strong> Recorte o capô curvado e o aerofólio e cole. Pinte com tinta guache ou spray. Para melhorar o deslizamento, engraxe os canudos com um pouquinho de manteiga ou óleo de cozinha.</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Papelão duplo<span class="oc-w">supermercado / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Tampas PET ×4<span class="oc-w">em casa / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Canudos ×2<span class="oc-w">supermercado / padaria</span></span><span class="oc-p">R$ 2–4</span></div>
+      <div class="oc-i"><span class="oc-nm">Palitos de churrasco<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 3–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Cola quente + bastões<span class="oc-w">papelaria / bazares</span></span><span class="oc-p">R$ 10–20</span></div>
+      <div class="oc-i"><span class="oc-nm">Tinta guache (opcional)<span class="oc-w">papelaria</span></span><span class="oc-p">R$ 5–12</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 45–60 min</span><span class="ctag">Mecânica</span></div>
 </div>
@@ -312,12 +347,23 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>Seringa 20 ml</li><li>Seringa 5 ml</li><li>Mangueira aquário 15 cm</li><li>Papel (foguete)</li><li>Caixa papelão (base)</li><li>Palito (pivot rampa)</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Monte a base com rampa inclinável — um palito como pivô permite ajustar o ângulo de 30° a 60°.</li>
-    <li data-n="2.">Conecte as seringas pela mangueira. Para mais potência, preencha com água (hidráulica).</li>
-    <li data-n="3.">Enrole um cone de papel e encaixe no bico da seringa pequena — esse é o foguete.</li>
-    <li data-n="4.">Posicione a seringa pequena na rampa apontada para cima.</li>
-    <li data-n="5.">Empurre o êmbolo grande com força rápida — o foguete é lançado! Meça distâncias variando o ângulo.</li>
+    <li data-n="1."><strong>Base:</strong> Use uma caixa de papelão resistente como base. Corte um slot na lateral para a rampa poder mudar de ângulo. Passe um palito de churrasco como pivô — ele permite ajustar o ângulo entre 30° e 75°.</li>
+    <li data-n="2."><strong>Seringas:</strong> Encaixe a mangueira de aquário nos bicos de ambas as seringas. Se for usar ar, certifique-se de não ter vazamento. Para mais potência, encha o sistema com água — a água é incompressível e transmite 100% da força.</li>
+    <li data-n="3."><strong>Foguete:</strong> Enrole um cone de papel A4 (diâmetro = 1 cm, para encaixar no bico da seringa 5 ml). Cole com fita e pinte. Para estabilidade, recorte 3 aletas triangulares de papelão e cole na base do cone, a 120° entre si.</li>
+    <li data-n="4."><strong>Montagem:</strong> Prenda a seringa pequena na rampa com elástico ou fita. O bico deve apontar para cima e o foguete encaixar frouxo — firme o suficiente para não cair, mas solto para voar.</li>
+    <li data-n="5."><strong>Lançamento:</strong> Empurre o êmbolo da seringa 20 ml com força rápida e contínua. Experimente ângulos: 45° maximiza alcance horizontal; 75–80° maximiza altura. Marque o piso e compare distâncias!</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Seringa 20 ml<span class="oc-w">farmácia</span></span><span class="oc-p">R$ 3–6</span></div>
+      <div class="oc-i"><span class="oc-nm">Seringa 5 ml<span class="oc-w">farmácia</span></span><span class="oc-p">R$ 2–4</span></div>
+      <div class="oc-i"><span class="oc-nm">Mangueira aquário 20 cm<span class="oc-w">pet shop / Shopee</span></span><span class="oc-p">R$ 4–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Papel A4 (foguete)<span class="oc-w">em casa</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Caixa papelão<span class="oc-w">supermercado / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Palito de churrasco<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 3–5</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 60–90 min</span><span class="ctag">Pneumática</span></div>
 </div>
@@ -366,12 +412,22 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>Caixa alta estreita</li><li>Caixinha menor (cabine)</li><li>2 canudos (trilhos)</li><li>Roldana (tampinha+palito)</li><li>Barbante resistente</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Poço: caixa vertical, aberta na frente. Cole dois canudos verticais como trilhos nas laterais internas.</li>
-    <li data-n="2.">Cabine: caixinha que deslize nos trilhos com folga mínima. Faça uma porta articulada.</li>
-    <li data-n="3.">Roldana no topo: tampinha de garrafa + palito como eixo. Cole o palito nas paredes do poço.</li>
-    <li data-n="4.">Passe o barbante: prenda à cabine, passe pela roldana, a outra ponta fica livre para puxar.</li>
-    <li data-n="5.">Adicione contrapeso (papelão dobrado) na outra ponta para equilibrar a cabine.</li>
+    <li data-n="1."><strong>Poço:</strong> Use uma caixa de papelão alta (≥ 30 cm). Abra completamente a face frontal — é por onde você verá a cabine subir. Cole dois canudos verticais nas laterais internas, a 1 cm da borda da abertura. Eles são os trilhos.</li>
+    <li data-n="2."><strong>Cabine:</strong> Use uma caixinha menor. Perfure dois furos laterais do mesmo diâmetro dos canudos-trilhos. A cabine passa pelos trilhos e desliza sem tombar. Faça uma porta decorativa com papelão dobrado.</li>
+    <li data-n="3."><strong>Roldana:</strong> Empurre um palito de churrasco nas laterais do poço, no topo. Encaixe uma tampinha de garrafa com furo central no palito — ela gira livremento e é a roldana. Coloque um pouco de óleo de cozinha para reduzir atrito.</li>
+    <li data-n="4."><strong>Barbante:</strong> Amarre uma ponta do barbante na parte superior da cabine. Passe pela roldana. Na outra ponta, amarre o contrapeso (papelão dobrado pesado). Ajuste o contrapeso até equilibrar a cabine.</li>
+    <li data-n="5."><strong>Operação:</strong> Puxe o barbante livre abaixo da roldana para subir a cabine. Solte devagar e o contrapeso faz descer suavemente. Para botões de andar, marque os pisos na lateral do poço.</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Caixas de papelão<span class="oc-w">supermercado / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Canudos ×2<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 2–4</span></div>
+      <div class="oc-i"><span class="oc-nm">Palito de churrasco<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 3–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Barbante resistente 1 m<span class="oc-w">papelaria / armarinho</span></span><span class="oc-p">R$ 2–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Cola quente<span class="oc-w">papelaria / bazar</span></span><span class="oc-p">R$ 10–20</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 60 min</span><span class="ctag">Polias</span></div>
 </div>
@@ -433,11 +489,21 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>3–6 LEDs coloridos</li><li>Bateria 9V</li><li>Fio elétrico fino</li><li>Papel alumínio</li><li>Caixa de papelão</li><li>Bolinhas de isopor</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Faça furos na caixa para os LEDs. A perna longa do LED é o positivo (+).</li>
-    <li data-n="2.">Conecte todas as pernas longas (+) num fio e todas as curtas (−) noutro — circuito paralelo.</li>
-    <li data-n="3.">Interruptor: dois quadrados de papel alumínio que se tocam ao apertar um botão de papelão.</li>
-    <li data-n="4.">Conecte tudo à bateria 9V pelo interruptor. Cubra LEDs com isopor para difundir a luz.</li>
+    <li data-n="1."><strong>LEDs:</strong> Use um lápis para fazer furos no papelão (diâmetro ligeiramente menor que o LED para ele ficar travado). Empurre cada LED pelo furo com a cabeça redonda para fora. A perna LONGA é o positivo (+) e a curta é o negativo (−).</li>
+    <li data-n="2."><strong>Circuito paralelo:</strong> Torça todas as pernas longas (+) juntas em um único fio. Torça todas as pernas curtas (−) em outro fio. No paralelo, cada LED tem a mesma tensão e funciona independentemente — se um queimar, os demais continuam.</li>
+    <li data-n="3."><strong>Interruptor:</strong> Recorte dois quadrados de papelão (3×3 cm) e forre com papel alumínio. Prenda os dois fios, um em cada quadrado. Ao apertar, os alumínios se tocam e fecham o circuito. Monte em uma caixinha pequena como botão.</li>
+    <li data-n="4."><strong>Ligação:</strong> Conecte o fio positivo ao polo (+) da bateria 9V (pelo interruptor). Conecte o fio negativo ao polo (−). Pressione o botão — os LEDs acendem! Cubra com pedacinhos de isopor ou plástico leitoso para difundir a luz.</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">LEDs coloridos ×3–6<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 5–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Bateria 9V<span class="oc-w">supermercado / papelaria</span></span><span class="oc-p">R$ 10–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Fio elétrico fino (1 m)<span class="oc-w">loja elétrica / Shopee</span></span><span class="oc-p">R$ 4–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Papel alumínio<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 5–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Conector bateria 9V<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 3–6</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 1–1,5 h</span><span class="ctag">Elétrica</span></div>
 </div>
@@ -488,11 +554,20 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>Papelão grosso (parede)</li><li>Tiras 4 cm (calhas)</li><li>Bolinhas de gude</li><li>Cola quente</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Calhas em "U": dobre tiras de 4 cm — base central + 1 cm dobrado para cima em cada lateral.</li>
-    <li data-n="2.">Planeje o zigue-zague de cima para baixo alternando a direção a cada nível.</li>
-    <li data-n="3.">Cole as calhas na parede vertical, sempre inclinadas ~8° para a bolinha rolar sozinha.</li>
-    <li data-n="4.">Nas curvas, aumente a lateral externa para a bolinha não cair. Teste e ajuste ângulos.</li>
+    <li data-n="1."><strong>Calhas em U:</strong> Corte tiras de papelão de 4 cm de largura. Marque 1 cm em cada borda longa e dobre para cima — formando um "U" com base de 2 cm e laterais de 1 cm. A bolinha de gude rola na base e as laterais impedem que ela caia.</li>
+    <li data-n="2."><strong>Planejamento:</strong> Antes de colar, trace a pista no papelão com lápis. Alterne a direção a cada nível: primeiro nível vai da esquerda para direita, segundo da direita para esquerda, etc. Deixe pelo menos 6 cm de queda entre níveis.</li>
+    <li data-n="3."><strong>Inclinação:</strong> Cada calha deve ter ~8° de inclinação (um lado levemente mais alto). Sem inclinação, a bolinha para. Cole com cola quente primeiro as extremidades, depois o meio. Confirme com a bolinha antes de colar tudo.</li>
+    <li data-n="4."><strong>Curvas de transição:</strong> Nas viradas, dobre um pedaço de papelão em arco para guiar a bolinha de uma calha para a próxima. Aumente a lateral externa nas curvas (2 cm em vez de 1 cm) para a bolinha não pular.</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Papelão grosso (parede)<span class="oc-w">reciclagem / supermercado</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Bolinhas de gude<span class="oc-w">papelaria / Shopee</span></span><span class="oc-p">R$ 5–10</span></div>
+      <div class="oc-i"><span class="oc-nm">Cola quente + bastões<span class="oc-w">papelaria / bazar</span></span><span class="oc-p">R$ 10–20</span></div>
+      <div class="oc-i"><span class="oc-nm">Tinta/decoração (opcional)<span class="oc-w">papelaria</span></span><span class="oc-p">R$ 5–15</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 1–2 h</span><span class="ctag">Física</span></div>
 </div>
@@ -558,14 +633,25 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>Papelão duplo (3 barras)</li><li>6 seringas 5 ml</li><li>3 mangueiras 30 cm</li><li>Palitos (pinos)</li><li>Água (preencher)</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Segmentos: 3 barras de papelão duplo 5×20, 5×15 e 5×10 cm — 2–3 camadas coladas.</li>
-    <li data-n="2.">Juntas: palito como pino em cada conexão. Perfure os dois segmentos e passe o palito.</li>
-    <li data-n="3.">Em cada junta, cole um par de seringas 5 ml nos lados opostos do pino.</li>
-    <li data-n="4.">Conecte cada par com mangueira. Preencha de água devagar, sem bolhas.</li>
-    <li data-n="5.">Garra: duas peças articuladas na ponta do seg 3, controladas pelo par C.</li>
-    <li data-n="6.">Coordene A, B e C para mover o braço em 3 eixos e pegar objetos leves.</li>
+    <li data-n="1."><strong>Segmentos:</strong> Recorte 3 barras de papelão duplo colando 2–3 camadas: seg 1 = 5×20 cm (base), seg 2 = 5×15 cm, seg 3 = 5×10 cm (ponta). Cole as camadas com cola branca e deixe secar bem antes de perfurar.</li>
+    <li data-n="2."><strong>Juntas (pinos):</strong> Em cada conexão, perfure os dois segmentos com alicate de ponta e passe um palito de churrasco como pino. Corte o excesso deixando 3 mm de cada lado e dobre para travar. O segmento deve articular livremente no pino.</li>
+    <li data-n="3."><strong>Pares de seringa:</strong> Em cada junta, cole uma seringa em cada lado do pino (uma de cada lado do segmento). As duas seringas de um par ficam opostas: quando uma avança, a outra recua. Use cola quente generosa e espere secar.</li>
+    <li data-n="4."><strong>Água sem bolhas:</strong> Conecte cada par com mangueira. Incline as seringas com o bico para cima, empurre devagar até a água aparecer no bico. Conecte a mangueira com o bico ainda submerso em água. Repita para os 3 pares.</li>
+    <li data-n="5."><strong>Garra:</strong> Na ponta do seg 3, cole duas tiras de papelão articuladas no pino central. O par C (seringa C) abre e fecha a garra. Regule a folga para ela segurar objetos de 1–4 cm.</li>
+    <li data-n="6."><strong>Operação:</strong> Par A move a junta base (baixo/cima). Par B inclina o seg 2. Par C abre/fecha a garra. Coordene os três para alcançar um objeto, abrir a garra, posicionar, fechar e transferir.</li>
   </ul>
   <div class="tb water">Preencha as mangueiras com água inclinando as seringas para cima e empurrando devagar — elimina bolhas de ar que enfraquecem o movimento.</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Seringas 5 ml ×6<span class="oc-w">farmácia</span></span><span class="oc-p">R$ 2–4 cada</span></div>
+      <div class="oc-i"><span class="oc-nm">Mangueira aquário 1 m<span class="oc-w">pet shop / Shopee</span></span><span class="oc-p">R$ 8–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Palitos de churrasco<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 3–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Papelão duplo<span class="oc-w">reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Corante alimentício<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 3–6</span></div>
+      <div class="oc-i"><span class="oc-nm">Cola quente<span class="oc-w">papelaria</span></span><span class="oc-p">R$ 10–20</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 3–4 h</span><span class="ctag hy2">Hidráulica</span></div>
 </div>
@@ -621,12 +707,22 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>2 caixas empilhadas</li><li>Papelão rígido (plataforma)</li><li>2 seringas 20 ml</li><li>Mangueira 40 cm</li><li>Água</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Empilhe e cole as duas caixas abertas na frente formando uma garagem de 2 andares.</li>
-    <li data-n="2.">Plataforma: papelão rígido com trilhos laterais para subir/descer sem tombar.</li>
-    <li data-n="3.">Posicione a seringa interna em pé sob a plataforma (êmbolo apontando para cima).</li>
-    <li data-n="4.">Conecte mangueira entre seringa interna e a externa (fora da garagem). Preencha com água.</li>
-    <li data-n="5.">Empurre a seringa externa — a interna eleva a plataforma. Puxe — desce.</li>
+    <li data-n="1."><strong>Estrutura:</strong> Empilhe e cole duas caixas abertas na frente, formando a garagem de 2 andares. Reforce as junções com fita larga por fora. Marque o piso do 1° e 2° andar com linhas internas.</li>
+    <li data-n="2."><strong>Plataforma:</strong> Recorte papelão rígido ligeiramente menor que a abertura interna. Cole 4 tiras verticais nas laterais (trilhos) — elas deslizam pelas paredes da garagem sem travar. Teste antes de prosseguir.</li>
+    <li data-n="3."><strong>Seringa interna:</strong> Posicione a seringa 20 ml em pé, com o êmbolo voltado para cima, embaixo da plataforma. Cole a seringa ao piso da garagem. O êmbolo toca a plataforma por baixo e a empurra para cima.</li>
+    <li data-n="4."><strong>Sistema hidráulico:</strong> Conecte a mangueira entre o bico da seringa interna e o bico da seringa externa. Preencha com água sem bolhas (incline as seringas para cima ao encher). Teste empurrando a externa — a plataforma deve subir suavemente.</li>
+    <li data-n="5."><strong>Operação:</strong> Empurre devagar a seringa externa → a plataforma sobe ao 2° andar. Puxe → desce ao 1°. Para mais força, use seringas maiores (30 ml) ou reduza o peso da plataforma.</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Seringas 20 ml ×2<span class="oc-w">farmácia</span></span><span class="oc-p">R$ 4–8 cada</span></div>
+      <div class="oc-i"><span class="oc-nm">Mangueira aquário 50 cm<span class="oc-w">pet shop / Shopee</span></span><span class="oc-p">R$ 5–10</span></div>
+      <div class="oc-i"><span class="oc-nm">Caixas de papelão<span class="oc-w">supermercado / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Papelão rígido (plataforma)<span class="oc-w">caixa de eletrodoméstico</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Fita larga<span class="oc-w">papelaria / bazar</span></span><span class="oc-p">R$ 4–8</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 2–3 h</span><span class="ctag hy2">Hidráulica</span></div>
 </div>
@@ -671,12 +767,21 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
   <ul class="cml"><li>Papelão duplo 30×30 cm</li><li>Tiras internas (paredes)</li><li>2 bastões (suporte X)</li><li>Bolinha de gude</li></ul>
   <p class="csl">Passo a passo</p>
   <ul class="css2">
-    <li data-n="1.">Base 30×30 cm com bordas de 2 cm coladas em todo o perímetro.</li>
-    <li data-n="2.">Planeje o labirinto no papel antes de colar as paredes internas.</li>
-    <li data-n="3.">Corte os buracos-armadilha (diâmetro = bolinha + 2 mm) em pontos estratégicos.</li>
-    <li data-n="4.">Suporte: dois bastões cruzados em X fixados na parte inferior — permitem inclinar em todas as direções.</li>
-    <li data-n="5.">Marque START e FIM. Numere as armadilhas. Cair = voltar ao buraco anterior.</li>
+    <li data-n="1."><strong>Base:</strong> Corte 30×30 cm de papelão duplo (3 camadas coladas para rigidez). Cole tiras de 2 cm em todo o perímetro como bordas. Pinte o interior de branco para facilitar a marcação do labirinto.</li>
+    <li data-n="2."><strong>Planejamento:</strong> No papel, desenhe o labirinto em escala antes de cortar qualquer coisa. Marque a posição START (canto superior esquerdo), FIM (canto inferior direito) e as armadilhas (5 buracos no percurso). Corredor mínimo: 3 cm.</li>
+    <li data-n="3."><strong>Paredes internas:</strong> Corte tiras de 1,5 cm de altura. Cole seguindo o desenho. Use esquadro para garantir que as paredes fiquem retas. Deixe secar completamente antes de testar com a bolinha.</li>
+    <li data-n="4."><strong>Armadilhas:</strong> Com estilete, corte os buracos (diâmetro = bolinha + 1 mm). Numere cada buraco de 1 a 5. Regra: cair na armadilha 1 → volta ao início; armadilha 2–5 → volta ao número anterior. Escreva as regras na lateral.</li>
+    <li data-n="5."><strong>Suporte:</strong> Amarre dois bastões de 40 cm cruzados em X embaixo da plataforma (use parafuso passante ou arame). Cada mão segura um bastão. Incline coordenando as duas mãos para direcionar a bolinha pelo percurso.</li>
   </ul>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Papelão triplo (30×30 cm)<span class="oc-w">reciclagem / papelaria</span></span><span class="oc-p">grátis–R$ 5</span></div>
+      <div class="oc-i"><span class="oc-nm">Bolinhas de gude<span class="oc-w">papelaria / Shopee</span></span><span class="oc-p">R$ 5–10</span></div>
+      <div class="oc-i"><span class="oc-nm">Bastões 40 cm ×2<span class="oc-w">ferragem / cabo de vassoura</span></span><span class="oc-p">R$ 5–10</span></div>
+      <div class="oc-i"><span class="oc-nm">Cola quente<span class="oc-w">papelaria / bazar</span></span><span class="oc-p">R$ 10–20</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 45 min</span><span class="ctag">Jogo</span></div>
 </div>
@@ -752,6 +857,17 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
     <li data-n="6.">Repita alternando puxar/empurrar para transferir toda a água de A para B.</li>
   </ul>
   <div class="tb water">Use água com corante alimentício para visualizar o fluxo. Observe como as válvulas impedem o refluxo!</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Seringa 30 ml<span class="oc-w">farmácia</span></span><span class="oc-p">R$ 5–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Tampas PET ×2<span class="oc-w">em casa / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Mangueira aquário 30 cm<span class="oc-w">pet shop / Shopee</span></span><span class="oc-p">R$ 5–10</span></div>
+      <div class="oc-i"><span class="oc-nm">Garrafas PET 500 ml ×2<span class="oc-w">supermercado / reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Bolinhas pequenas ×2<span class="oc-w">papelaria (bolinhas de borracha)</span></span><span class="oc-p">R$ 3–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Corante alimentício<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 3–6</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 1,5–2 h</span><span class="ctag hy2">Hidráulica</span></div>
 </div>
@@ -830,6 +946,17 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
     <li data-n="6.">Interruptor: duas tiras de papel alumínio que se tocam — coloque entre os fios para ligar/desligar.</li>
   </ul>
   <div class="tb motor">Se o motor girar na direção errada, inverta os jacarés. Se girar devagar, verifique se as pilhas estão novas e o eixo não está roçando no papelão.</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Motor DC 3–6V<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 8–20</span></div>
+      <div class="oc-i"><span class="oc-nm">Pilhas AA ×4 + suporte<span class="oc-w">supermercado + Shopee</span></span><span class="oc-p">R$ 12–22</span></div>
+      <div class="oc-i"><span class="oc-nm">Fios com jacaré ×2<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 8–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Tampas PET ×4 (rodas)<span class="oc-w">reciclagem</span></span><span class="oc-p">grátis</span></div>
+      <div class="oc-i"><span class="oc-nm">Canudos + palitos de churrasco<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 5–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Papel alumínio (interruptor)<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 5–8</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 1,5–2 h</span><span class="ctag mo2">Motor DC</span></div>
 </div>
@@ -899,6 +1026,16 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
     <li data-n="5.">Ligue e observe a hélice girar. Para inverter o sentido (ventilador/exaustor), troque os jacarés.</li>
   </ul>
   <div class="tb motor">O grafite do lápis 2B ou 6B tem mais resistência que o HB — experimente lápis diferentes para ver como afetam a velocidade.</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Motor DC 3–6V<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 8–20</span></div>
+      <div class="oc-i"><span class="oc-nm">Bateria 9V ou pilhas AA ×4<span class="oc-w">supermercado</span></span><span class="oc-p">R$ 10–20</span></div>
+      <div class="oc-i"><span class="oc-nm">Fios com jacaré ×2<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 8–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Lápis grafite 2B<span class="oc-w">papelaria</span></span><span class="oc-p">R$ 2–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Papelão (suporte + hélice)<span class="oc-w">reciclagem</span></span><span class="oc-p">grátis</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 1–1,5 h</span><span class="ctag mo2">Motor DC</span></div>
 </div>
@@ -968,6 +1105,16 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
     <li data-n="6.">Conecte as duas extremidades do fio ao LED (sem polaridade fixa, pois gera AC). Gire o eixo rápido — o LED acende!</li>
   </ul>
   <div class="tb motor">Use LED vermelho ou verde: acendem com ~1,8V. LEDs azuis precisam de ~3V e são mais difíceis de acender com este gerador caseiro.</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Fio de cobre esmaltado 0,3 mm (10 m)<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 15–25</span></div>
+      <div class="oc-i"><span class="oc-nm">Imãs de neodímio ×2<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 10–20</span></div>
+      <div class="oc-i"><span class="oc-nm">LED vermelho<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 3–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Lixa fina (expor cobre)<span class="oc-w">ferragem / papelaria</span></span><span class="oc-p">R$ 2–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Palito longo + papelão<span class="oc-w">supermercado / reciclagem</span></span><span class="oc-p">R$ 3–5</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 2–3 h</span><span class="ctag mo2">Eletromagnetismo</span></div>
 </div>
@@ -1037,6 +1184,17 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
     <li data-n="6.">Pinte os furos com tinta: anel vermelho, amarelo e verde ao redor de cada LED. Cole coberturas de plástico colorido (de saco) para difundir a luz.</li>
   </ul>
   <div class="tb">Resistor 470Ω para LED com bateria 9V é obrigatório — sem ele o LED queima em segundos. (9V − 2V) ÷ 0,02A = 350Ω → use 470Ω que é o valor comercial mais próximo acima.</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">LED vermelho<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 2–5</span></div>
+      <div class="oc-i"><span class="oc-nm">LED amarelo<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 2–5</span></div>
+      <div class="oc-i"><span class="oc-nm">LED verde<span class="oc-w">Shopee / loja de eletrônica</span></span><span class="oc-p">R$ 2–5</span></div>
+      <div class="oc-i"><span class="oc-nm">Bateria 9V + conector<span class="oc-w">supermercado / Shopee</span></span><span class="oc-p">R$ 12–18</span></div>
+      <div class="oc-i"><span class="oc-nm">Resistores 470Ω ×3<span class="oc-w">Shopee (kit 100 peças)</span></span><span class="oc-p">R$ 5–10</span></div>
+      <div class="oc-i"><span class="oc-nm">Fios com jacaré ×6<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 12–20</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 1,5–2 h</span><span class="ctag mo2">Elétrica</span></div>
 </div>
@@ -1116,6 +1274,17 @@ body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16
     <li data-n="6.">Ligue o motor pelos fios com jacaré à bateria. A hélice girando cria pressão e bombeia a água!</li>
   </ul>
   <div class="tb water">Se a bomba não puxar água, verifique se há ar na câmara — encha manualmente pela entrada antes de ligar o motor (processo chamado "escorvar a bomba").</div>
+  <div class="oc">
+    <p class="oc-h">O que comprar</p>
+    <div class="oc-g">
+      <div class="oc-i"><span class="oc-nm">Motor DC 6V (potente)<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 12–25</span></div>
+      <div class="oc-i"><span class="oc-nm">Cano PVC ½" (~10 cm)<span class="oc-w">ferragem / Leroy Merlin</span></span><span class="oc-p">R$ 3–8</span></div>
+      <div class="oc-i"><span class="oc-nm">Hélice de aquário<span class="oc-w">pet shop / Shopee</span></span><span class="oc-p">R$ 5–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Pilhas AA ×4 + suporte<span class="oc-w">supermercado + Shopee</span></span><span class="oc-p">R$ 12–22</span></div>
+      <div class="oc-i"><span class="oc-nm">Fios com jacaré ×2<span class="oc-w">Shopee / Mercado Livre</span></span><span class="oc-p">R$ 8–15</span></div>
+      <div class="oc-i"><span class="oc-nm">Silicone vedante<span class="oc-w">ferragem / supermercado</span></span><span class="oc-p">R$ 8–15</span></div>
+    </div>
+  </div>
 </div></div>
 <div class="cf"><span class="ctime">⏱ 3–4 h</span><span class="ctag mo2">Eletro-hidráulica</span></div>
 </div>
@@ -1157,5 +1326,22 @@ document.querySelectorAll('.ch').forEach(function(h){
   h.addEventListener('keydown',function(e){
     if(e.key==='Enter'||e.key===' '){e.preventDefault();h.click();}
   });
+});
+
+// Botão expandir diagrama em tela cheia
+document.querySelectorAll('.dw').forEach(function(dw){
+  var svg=dw.querySelector('svg');
+  if(!svg)return;
+  var btn=document.createElement('button');
+  btn.className='xbtn';btn.title='Expandir diagrama';btn.textContent='⛶ ampliar';
+  var ov=document.createElement('div');ov.className='xover';
+  var cl=document.createElement('button');cl.className='xcl';cl.textContent='✕ Fechar';
+  var sc=svg.cloneNode(true);sc.style.height='auto';
+  ov.appendChild(cl);ov.appendChild(sc);
+  btn.onclick=function(e){e.stopPropagation();ov.classList.add('on');};
+  cl.onclick=function(){ov.classList.remove('on');};
+  ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.remove('on');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')ov.classList.remove('on');});
+  dw.appendChild(btn);document.body.appendChild(ov);
 });
 </script>
