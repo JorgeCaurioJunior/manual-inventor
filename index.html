@@ -1,0 +1,1161 @@
+<title>Manual do Inventor — Projetos Robóticos e Elétricos</title>
+<style>
+:root{
+  --bg:#F0E8D4;--bg2:#E4D9C0;--sur:#FDFAF4;--bor:#C8B89A;
+  --tx:#2A1F10;--mu:#7A6550;--a1:#C4480A;--a2:#1A7A8A;
+  --a3:#6B3FA0;--tbg:#D4560D1A;--ttx:#C4480A;--sbg:#1A7A8A0F;
+  --cd:#FDFAF4;--sh:rgba(42,31,16,.12);--dv:#C8B89A;
+  --hw:#0077BB;--hg:#0077BB1A;--em:#9B2020;--eg:#9B20201A;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1A1510;--bg2:#221C14;--sur:#2C2318;--bor:#4A3D2A;
+  --tx:#F0E4CC;--mu:#9A8870;--a1:#E8641E;--a2:#2BA8BC;
+  --a3:#A06BCF;--tbg:#E8641E1A;--ttx:#E8641E;--sbg:#2BA8BC0F;
+  --cd:#2C2318;--sh:rgba(0,0,0,.35);--dv:#4A3D2A;
+  --hw:#44AADD;--hg:#44AADD1A;--em:#DD5555;--eg:#DD55551A;
+}}
+:root[data-theme=light]{--bg:#F0E8D4;--bg2:#E4D9C0;--sur:#FDFAF4;--bor:#C8B89A;--tx:#2A1F10;--mu:#7A6550;--a1:#C4480A;--a2:#1A7A8A;--a3:#6B3FA0;--tbg:#D4560D1A;--ttx:#C4480A;--sbg:#1A7A8A0F;--cd:#FDFAF4;--sh:rgba(42,31,16,.12);--dv:#C8B89A;--hw:#0077BB;--hg:#0077BB1A;--em:#9B2020;--eg:#9B20201A;}
+:root[data-theme=dark]{--bg:#1A1510;--bg2:#221C14;--sur:#2C2318;--bor:#4A3D2A;--tx:#F0E4CC;--mu:#9A8870;--a1:#E8641E;--a2:#2BA8BC;--a3:#A06BCF;--tbg:#E8641E1A;--ttx:#E8641E;--sbg:#2BA8BC0F;--cd:#2C2318;--sh:rgba(0,0,0,.35);--dv:#4A3D2A;--hw:#44AADD;--hg:#44AADD1A;--em:#DD5555;--eg:#DD55551A;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:Georgia,serif;font-size:16px;line-height:1.65;min-height:100vh}
+
+/* HEADER */
+.hd{background:var(--tx);color:var(--bg);padding:2.5rem 2rem 2rem}
+.hd-in{max-width:960px;margin:0 auto}
+.ey{font-family:'Courier New',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--a1);margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+.ey::before{content:'';display:inline-block;width:1.8rem;height:2px;background:var(--a1)}
+.ht{font-family:system-ui,sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.08;color:var(--bg);margin-bottom:.6rem}
+.ht em{font-style:normal;color:var(--a1)}
+.hs{font-size:.95rem;color:#c0b8a8;max-width:560px;line-height:1.5;margin-bottom:1.5rem}
+.hm{display:flex;flex-wrap:wrap;gap:1rem;font-family:'Courier New',monospace;font-size:.72rem;color:#8A7E6E;border-top:1px solid #3A3020;padding-top:1rem}
+
+/* MATERIALS BAR */
+.mb{background:var(--a2);color:#fff;padding:.9rem 2rem}
+.mb-in{max-width:960px;margin:0 auto}
+.mb h2{font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:.6rem}
+.ml{display:flex;flex-wrap:wrap;gap:.45rem;list-style:none}
+.ml li{background:rgba(255,255,255,.15);padding:.2rem .6rem;border-radius:3px;font-family:'Courier New',monospace;font-size:.76rem}
+
+/* MAIN */
+.mn{max-width:960px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.sl{font-family:'Courier New',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mu);margin-bottom:1.2rem;display:flex;align-items:center;gap:.7rem}
+.sl::after{content:'';flex:1;height:1px;background:var(--dv)}
+
+/* DIAGRAMS */
+.dt{font-family:'Courier New',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:.9rem}
+.dr{display:flex;flex-direction:column;gap:1.5rem}
+.ps{width:100%;height:auto;display:block}
+
+/* SVG THEMING */
+.ps line,.ps rect,.ps circle,.ps path,.ps polyline,.ps polygon{stroke:var(--a2);stroke-width:2;fill:none;vector-effect:non-scaling-stroke}
+.ps text{fill:var(--mu);font-family:'Courier New',monospace;font-size:11px;stroke:var(--bg2);stroke-width:4px;paint-order:stroke fill;stroke-linejoin:round}
+.ps .lb{fill:var(--tx);font-weight:700;font-size:12px;stroke:var(--bg2);stroke-width:4px;paint-order:stroke fill;stroke-linejoin:round}
+.ps .so{fill:var(--sbg);stroke:var(--a2)}
+.ps .ac{stroke:var(--a1);fill:none}
+.ps .af{fill:var(--tbg);stroke:var(--a1)}
+.ps .hy{stroke:var(--hw);fill:none}
+.ps .hf{fill:var(--hg);stroke:var(--hw)}
+.ps .el{stroke:var(--em);fill:none}
+.ps .ef{fill:var(--eg);stroke:var(--em)}
+.ps .mo{stroke:var(--a3);fill:none}
+.ps .mf{fill:#6B3FA01A;stroke:var(--a3)}
+.ps .gr{fill:none;stroke:#777;stroke-width:1}
+
+/* ANIMATIONS */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes piston{0%,100%{transform:translateX(0)}50%{transform:translateX(-28px)}}
+@keyframes piston2{0%,100%{transform:translateX(0)}50%{transform:translateX(28px)}}
+@keyframes wflow{to{stroke-dashoffset:-15}}
+@keyframes eflow{to{stroke-dashoffset:-15}}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 1.4s linear infinite}
+.pist{transform-box:fill-box;transform-origin:right center;animation:piston 2s ease-in-out infinite}
+.pist2{transform-box:fill-box;transform-origin:left center;animation:piston2 2s ease-in-out infinite}
+.wf{stroke-dasharray:10 5;animation:wflow 1.2s linear infinite}
+.ef{stroke-dasharray:6 6;animation:eflow .9s linear infinite}
+.ld{animation:pulse 1.2s ease-in-out infinite}
+.ld2{animation:pulse 1.2s ease-in-out infinite .4s}
+.ld3{animation:pulse 1.2s ease-in-out infinite .8s}
+.bk1{animation:blink 3s step-end infinite}
+.bk2{animation:blink 3s step-end infinite 1s}
+.bk3{animation:blink 3s step-end infinite 2s}
+
+@media(prefers-reduced-motion:reduce){.spin,.pist,.pist2,.wf,.ef,.ld,.ld2,.ld3,.bk1,.bk2,.bk3{animation:none}}
+
+.anim-badge{display:inline-block;font-family:'Courier New',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;background:var(--a3);color:#fff;padding:.15rem .5rem;border-radius:2px;margin-left:.5rem}
+
+/* MAT BOX */
+.mb2{background:var(--bg2);border:1px solid var(--bor);border-radius:3px;padding:1rem 1.2rem;margin-bottom:1.2rem}
+.mb2 h4{font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:.6rem}
+.mb2 ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.3rem;font-size:.87rem}
+.mb2 li::before{content:'→ ';font-family:'Courier New',monospace;color:var(--a2)}
+
+/* STEPS */
+.st{display:flex;flex-direction:column;gap:.65rem}
+.si{display:grid;grid-template-columns:2rem 1fr;gap:.8rem;align-items:start}
+.sn{font-family:'Courier New',monospace;font-size:.8rem;font-weight:700;color:#fff;background:var(--a1);width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;margin-top:.05rem}
+.sk{background:var(--sbg);border:1px solid var(--bor);border-radius:3px;padding:.5rem .85rem;font-size:.88rem;line-height:1.55}
+.sk strong{color:var(--a2)}
+.tb{background:var(--tbg);border:1px dashed var(--a1);border-radius:3px;padding:.65rem 1rem;margin-top:1.1rem;font-size:.84rem;color:var(--ttx);font-family:'Courier New',monospace}
+.tb::before{content:'⚡ DICA: ';font-weight:700;letter-spacing:.06em}
+.tb.water{background:var(--hg);border-color:var(--hw);color:var(--hw)}
+.tb.water::before{content:'💧 DICA: '}
+.tb.motor{background:#6B3FA01A;border-color:var(--a3);color:var(--a3)}
+.tb.motor::before{content:'⚙️ DICA: '}
+
+/* PROJECT CARDS */
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.2rem;margin-bottom:2.5rem}
+.pc{background:var(--cd);border:1.5px solid var(--bor);border-radius:4px;overflow:hidden;box-shadow:0 2px 8px var(--sh);transition:box-shadow .18s,border-color .18s}
+.pc.open{border-color:var(--a2);box-shadow:0 4px 18px var(--sh);grid-column:1/-1}
+.pc.adv.open{border-color:var(--a3)}
+.ch{padding:.9rem 1.1rem .8rem;background:var(--bg2);border-bottom:1px solid var(--bor);display:flex;align-items:center;gap:.7rem;cursor:pointer;user-select:none}
+.ch:hover{background:var(--bor)}
+.ch:focus{outline:2px solid var(--a2);outline-offset:-2px}
+.ci{font-size:1.5rem;line-height:1;flex-shrink:0}
+.cm{flex:1}
+.ct{font-family:system-ui,sans-serif;font-size:.95rem;font-weight:700;line-height:1.2}
+.cd2{font-family:'Courier New',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--mu);text-transform:uppercase;margin-top:.15rem}
+.dots{display:inline-flex;gap:2px;margin-left:4px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--dv)}
+.dot.f{background:var(--a1)}
+.dot.fa{background:var(--a3)}
+.ti{font-family:'Courier New',monospace;font-size:.8rem;color:var(--mu);flex-shrink:0;transition:transform .25s}
+.pc.open .ti{transform:rotate(180deg)}
+.cb{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.pc.open .cb{max-height:3000px}
+.cbi{padding:1.4rem}
+.pc.open .cbi{display:grid;grid-template-columns:minmax(260px,1fr) 2fr;grid-template-rows:auto;gap:1.5rem 2rem;align-items:start}
+.pc.open .dw{grid-column:2;grid-row:1/6}
+.pc.open .cf{grid-column:1/-1}
+.dw{background:var(--bg2);border:1px solid var(--bor);border-radius:4px;padding:1.2rem 1.5rem;overflow-x:auto;margin:0}
+.cde{font-size:.86rem;color:var(--mu);margin-bottom:1rem;line-height:1.55}
+.cml{list-style:none;font-size:.82rem;margin-bottom:.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.25rem}
+.cml li::before{content:'· ';color:var(--a2)}
+.cml-l{font-family:'Courier New',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:.4rem}
+.csl{font-family:'Courier New',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin:1rem 0 .5rem}
+.css2{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.css2 li{font-size:.83rem;display:grid;grid-template-columns:1.4rem 1fr;gap:.5rem;line-height:1.45}
+.css2 li::before{content:attr(data-n);font-family:'Courier New',monospace;font-size:.7rem;font-weight:700;color:var(--a2);margin-top:.05rem}
+.cf{border-top:1px solid var(--dv);padding:.6rem 1.1rem;display:flex;align-items:center;justify-content:space-between}
+.ctime{font-family:'Courier New',monospace;font-size:.7rem;color:var(--mu)}
+.ctag{font-family:'Courier New',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;background:var(--tbg);color:var(--ttx);padding:.15rem .45rem;border-radius:2px}
+.ctag.hy2{background:var(--hg);color:var(--hw)}
+.ctag.mo2{background:#6B3FA01A;color:var(--a3)}
+
+/* TIPS */
+.ts{background:var(--sur);border:1.5px solid var(--bor);border-radius:4px;padding:1.5rem;box-shadow:0 2px 8px var(--sh)}
+.ts h3{font-family:system-ui,sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem}
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem}
+.ti2{background:var(--bg2);border:1px solid var(--bor);border-radius:3px;padding:.9rem}
+.ti2 h4{font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--a2);margin-bottom:.4rem}
+.ti2 p{font-size:.82rem;color:var(--mu);line-height:1.5}
+
+.ft{background:var(--bg2);border-top:1px solid var(--dv);padding:1.2rem 2rem;text-align:center;font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.06em;color:var(--mu)}
+
+@media(max-width:700px){
+  .hd,.mn{padding-left:1.2rem;padding-right:1.2rem}
+  .cml{grid-template-columns:1fr}
+  .mb{padding:.8rem 1.2rem}
+  .pc.open .cbi{grid-template-columns:1fr;grid-template-rows:auto}
+  .pc.open .dw{grid-column:1;grid-row:auto}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#C4480A"/></marker>
+<marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#1A7A8A"/></marker>
+<marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#0077BB"/></marker>
+<marker id="ar4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3z" fill="#6B3FA0"/></marker>
+</defs>
+</svg>
+
+<header class="hd">
+<div class="hd-in">
+  <p class="ey">Guia Prático · Edição Avançada</p>
+  <h1 class="ht">Manual do <em>Inventor</em></h1>
+  <p class="hs">Projetos robóticos, elétricos e hidráulicos com papelão, motores DC, seringas, canos e fios com jacaré. Diagramas animados para visualizar o funcionamento.</p>
+  <div class="hm">
+    <span>14 Projetos</span><span>·</span><span>Básico ao Avançado</span><span>·</span><span>Diagramas Animados</span><span>·</span><span>Idades: 10+</span>
+  </div>
+</div>
+</header>
+
+<div class="mb">
+<div class="mb-in">
+  <h2>Materiais Gerais</h2>
+  <ul class="ml">
+    <li>Caixas de papelão</li><li>Cola quente</li><li>Seringas 5–30 ml</li><li>Mangueira de aquário</li>
+    <li>Canos PVC ½"</li><li>Motor DC 3–6V</li><li>Pilhas AA (x4)</li><li>Fios com jacaré</li>
+    <li>LEDs coloridos</li><li>Bateria 9V</li><li>Resistores 100–470Ω</li><li>Fio de cobre esmaltado</li>
+    <li>Imã de neodímio</li><li>Tampa PET</li><li>Palitos de churrasco</li><li>Estilete + régua</li>
+  </ul>
+</div>
+</div>
+
+<main class="mn">
+
+<!-- ═══════════════════════════════════════
+     PROJETOS BÁSICOS
+═══════════════════════════════════════ -->
+<p class="sl">Projetos Básicos — Sem Eletricidade</p>
+<div class="pg">
+
+<!-- AUTOMÓVEL -->
+<div class="pc" id="c1">
+<div class="ch" onclick="tog('c1')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🏎️</span>
+  <div class="cm"><p class="ct">Automóvel de Papelão</p>
+  <p class="cd2">Iniciante <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b1"><div class="cbi">
+  <p class="cde">Carro estilo F1 com rodas giratórias feitas de tampas PET, eixo de palito dentro de canudo.</p>
+  <div class="dw"><p class="dt">Diagrama — sistema de eixo e rodas</p>
+  <svg class="ps" viewBox="0 0 460 220" aria-label="Automóvel papelão">
+    <!-- chassis -->
+    <rect class="so" x="90" y="85" width="260" height="40" rx="5"/>
+    <text x="220" y="109" text-anchor="middle" class="lb">CHASSIS</text>
+    <!-- eixo frente -->
+    <line x1="130" y1="65" x2="130" y2="165"/>
+    <text x="130" y="55" text-anchor="middle">eixo</text>
+    <!-- canudo frente -->
+    <rect class="so" x="110" y="100" width="40" height="10" rx="5"/>
+    <text x="130" y="127" text-anchor="middle" font-size="9">canudo (fixo)</text>
+    <!-- rodas frente -->
+    <circle class="so" cx="130" cy="65" r="24"/><text x="130" y="69" text-anchor="middle">PET</text>
+    <circle class="so" cx="130" cy="165" r="24"/><text x="130" y="169" text-anchor="middle">PET</text>
+    <!-- eixo trás -->
+    <line x1="310" y1="65" x2="310" y2="165"/>
+    <rect class="so" x="290" y="100" width="40" height="10" rx="5"/>
+    <circle class="so" cx="310" cy="65" r="24"/><text x="310" y="69" text-anchor="middle">PET</text>
+    <circle class="so" cx="310" cy="165" r="24"/><text x="310" y="169" text-anchor="middle">PET</text>
+    <!-- detalhe palito -->
+    <line class="ac" x1="130" y1="40" x2="130" y2="30" marker-end="url(#ar)"/>
+    <text x="150" y="35" fill="#C4480A" font-size="10">palito gira</text>
+    <line x1="90" y1="110" x2="78" y2="110" marker-end="url(#ar2)" style="stroke:var(--a2)"/>
+    <text x="18" y="113" font-size="9">canudo</text>
+    <text x="18" y="124" font-size="9">fixo</text>
+    <!-- aerofólio -->
+    <rect class="so" x="330" y="78" width="55" height="6" rx="2"/>
+    <line x1="355" y1="84" x2="355" y2="105"/><line x1="340" y1="84" x2="340" y2="105"/>
+    <text x="390" y="88" font-size="9">aerofólio</text>
+    <!-- capô -->
+    <path class="so" d="M175,85 Q200,62 255,62 L300,85"/>
+    <text x="237" y="75" text-anchor="middle" font-size="9">capô</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Papelão duplo (chassis)</li><li>4 tampas PET (rodas)</li><li>2 canudos (eixos)</li><li>2 palitos churrasco</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Chassis: retângulo 20×8 cm de papelão duplo, laterais dobradas 1 cm para rigidez.</li>
+    <li data-n="2.">Cole 2 canudos sob o chassis (frente e trás) — eles ficam fixos na estrutura.</li>
+    <li data-n="3.">Passe um palito por cada canudo. O palito deve girar livremente dentro do canudo.</li>
+    <li data-n="4.">Cole as tampas PET nas extremidades dos palitos com cola quente generosa. Teste o giro.</li>
+    <li data-n="5.">Molde capô e aerofólio com papelão úmido dobrado. Cole após secar. Pinte.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 45–60 min</span><span class="ctag">Mecânica</span></div>
+</div>
+
+<!-- LANÇADOR -->
+<div class="pc" id="c2">
+<div class="ch" onclick="tog('c2')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🚀</span>
+  <div class="cm"><p class="ct">Lançador de Foguetes</p>
+  <p class="cd2">Intermediário <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b2"><div class="cbi">
+  <p class="cde">Foguete lançado por pressão pneumática — seringa grande empurra ar pela mangueira, seringa pequena expulsa o foguete.</p>
+  <div class="dw"><p class="dt">Diagrama — sistema pneumático de lançamento</p>
+  <svg class="ps" viewBox="0 0 460 220" aria-label="Lançador foguete">
+    <!-- base rampa -->
+    <rect class="so" x="20" y="170" width="420" height="18" rx="3"/>
+    <text x="230" y="198" text-anchor="middle">base de papelão</text>
+    <!-- rampa inclinada -->
+    <line x1="200" y1="170" x2="360" y2="80"/>
+    <text x="295" y="118" text-anchor="middle" transform="rotate(-25 295 118)" font-size="9">rampa ajustável</text>
+    <!-- seringa grande -->
+    <rect class="so" x="25" y="95" width="110" height="38" rx="5"/>
+    <text x="80" y="117" text-anchor="middle" class="lb">20 ml</text>
+    <!-- êmbolo animado -->
+    <rect class="af pist" x="30" y="99" width="38" height="30" rx="3"/>
+    <line class="ac" x1="68" y1="114" x2="22" y2="114"/>
+    <text x="80" y="82" text-anchor="middle">seringa grande</text>
+    <!-- mangueira -->
+    <path class="hy" d="M135,114 Q165,114 175,114" stroke-dasharray="6,3"/>
+    <text x="155" y="107" text-anchor="middle" font-size="9" fill="var(--hw)">mangueira</text>
+    <!-- seringa pequena (na rampa) -->
+    <g transform="rotate(-25 280 130)">
+      <rect class="so" x="200" y="120" width="65" height="22" rx="3"/>
+      <text x="232" y="135" text-anchor="middle" font-size="9">5 ml</text>
+      <rect class="so" x="265" y="124" width="12" height="14" rx="2"/>
+    </g>
+    <!-- foguete -->
+    <polygon class="af" points="360,80 390,65 390,95"/>
+    <polygon class="af" points="390,65 415,55 408,75"/>
+    <polygon class="af" points="390,95 415,105 408,85"/>
+    <text x="400" y="55" font-size="10" fill="var(--a1)">foguete</text>
+    <!-- setas -->
+    <line class="ac" x1="12" y1="114" x2="26" y2="114" marker-end="url(#ar)"/>
+    <text x="8" y="108" font-size="9" fill="var(--a1)">↙ empurrar</text>
+    <line style="stroke:var(--a2);fill:none;stroke-width:2" x1="398" y1="72" x2="430" y2="55" marker-end="url(#ar2)"/>
+    <text x="432" y="52" font-size="9">lança!</text>
+    <!-- legenda -->
+    <text x="20" y="210" font-size="9">Ar comprimido na seringa grande → desloca êmbolo da seringa pequena → expulsa o foguete</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Seringa 20 ml</li><li>Seringa 5 ml</li><li>Mangueira aquário 15 cm</li><li>Papel (foguete)</li><li>Caixa papelão (base)</li><li>Palito (pivot rampa)</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Monte a base com rampa inclinável — um palito como pivô permite ajustar o ângulo de 30° a 60°.</li>
+    <li data-n="2.">Conecte as seringas pela mangueira. Para mais potência, preencha com água (hidráulica).</li>
+    <li data-n="3.">Enrole um cone de papel e encaixe no bico da seringa pequena — esse é o foguete.</li>
+    <li data-n="4.">Posicione a seringa pequena na rampa apontada para cima.</li>
+    <li data-n="5.">Empurre o êmbolo grande com força rápida — o foguete é lançado! Meça distâncias variando o ângulo.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 60–90 min</span><span class="ctag">Pneumática</span></div>
+</div>
+
+<!-- ELEVADOR -->
+<div class="pc" id="c3">
+<div class="ch" onclick="tog('c3')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🏗️</span>
+  <div class="cm"><p class="ct">Elevador com Roldana</p>
+  <p class="cd2">Iniciante <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b3"><div class="cbi">
+  <p class="cde">Cabine que sobe e desce dentro de um poço de papelão, guiada por trilhos, com roldana no topo.</p>
+  <div class="dw"><p class="dt">Diagrama — corte frontal do elevador</p>
+  <svg class="ps" viewBox="0 0 460 240" aria-label="Elevador">
+    <!-- poço -->
+    <rect class="so" x="120" y="25" width="120" height="190"/>
+    <text x="180" y="15" text-anchor="middle">POÇO</text>
+    <!-- trilhos -->
+    <line x1="135" y1="30" x2="135" y2="210" stroke-dasharray="5,3"/>
+    <line x1="225" y1="30" x2="225" y2="210" stroke-dasharray="5,3"/>
+    <text x="90" y="120" text-anchor="middle" font-size="9">trilhos</text>
+    <line x1="105" y1="120" x2="133" y2="120" marker-end="url(#ar2)" style="stroke:var(--a2)"/>
+    <!-- cabine -->
+    <rect class="af" x="140" y="110" width="80" height="65" rx="2"/>
+    <line class="ac" x1="180" y1="115" x2="180" y2="175"/>
+    <text x="180" y="147" text-anchor="middle" class="lb" font-size="10">CABINE</text>
+    <text x="180" y="160" text-anchor="middle" font-size="9">porta</text>
+    <!-- roldana -->
+    <circle class="so" cx="180" cy="28" r="15"/>
+    <text x="180" y="32" text-anchor="middle" font-size="9">roldana</text>
+    <!-- barbante -->
+    <line class="ac" x1="180" y1="110" x2="180" y2="43" marker-end="url(#ar)"/>
+    <path d="M180,13 Q280,13 295,60" stroke="var(--a1)" fill="none" stroke-width="2"/>
+    <text x="300" y="55" font-size="9" fill="var(--a1)">puxar</text>
+    <text x="300" y="67" font-size="9" fill="var(--a1)">↙ sobe</text>
+    <!-- contrapeso -->
+    <rect class="so" x="310" y="60" width="30" height="40" rx="2"/>
+    <text x="325" y="85" text-anchor="middle" font-size="9">peso</text>
+    <path d="M295,60 Q310,60 310,65" stroke="var(--a1)" fill="none" stroke-width="1.5" stroke-dasharray="4,2"/>
+    <!-- legenda -->
+    <text x="50" y="230" font-size="9">Puxar o barbante → cabine sobe | Soltar → contrapeso faz descer</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Caixa alta estreita</li><li>Caixinha menor (cabine)</li><li>2 canudos (trilhos)</li><li>Roldana (tampinha+palito)</li><li>Barbante resistente</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Poço: caixa vertical, aberta na frente. Cole dois canudos verticais como trilhos nas laterais internas.</li>
+    <li data-n="2.">Cabine: caixinha que deslize nos trilhos com folga mínima. Faça uma porta articulada.</li>
+    <li data-n="3.">Roldana no topo: tampinha de garrafa + palito como eixo. Cole o palito nas paredes do poço.</li>
+    <li data-n="4.">Passe o barbante: prenda à cabine, passe pela roldana, a outra ponta fica livre para puxar.</li>
+    <li data-n="5.">Adicione contrapeso (papelão dobrado) na outra ponta para equilibrar a cabine.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 60 min</span><span class="ctag">Polias</span></div>
+</div>
+
+<!-- CIRCUITOS -->
+<div class="pc" id="c4">
+<div class="ch" onclick="tog('c4')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">💡</span>
+  <div class="cm"><p class="ct">Painel de Circuito Elétrico</p>
+  <p class="cd2">Intermediário <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b4"><div class="cbi">
+  <p class="cde">Circuito com LEDs em paralelo, interruptor artesanal de papel alumínio e bateria 9V.</p>
+  <div class="dw"><p class="dt">Diagrama — circuito elétrico em paralelo</p>
+  <svg class="ps" viewBox="0 0 460 220" aria-label="Circuito elétrico">
+    <!-- fio positivo -->
+    <line x1="60" y1="60" x2="400" y2="60"/>
+    <text x="230" y="50" text-anchor="middle" fill="var(--em)" font-size="10">fio positivo (+)</text>
+    <!-- fio negativo -->
+    <line x1="60" y1="170" x2="400" y2="170"/>
+    <text x="230" y="192" text-anchor="middle" fill="var(--hw)" font-size="10">fio negativo (−)</text>
+    <!-- bateria -->
+    <rect class="so" x="25" y="72" width="35" height="86" rx="3"/>
+    <line x1="32" y1="68" x2="52" y2="68"/><line x1="36" y1="63" x2="48" y2="63"/>
+    <text x="42" y="112" text-anchor="middle" class="lb" font-size="10">9V</text>
+    <text x="42" y="126" text-anchor="middle" font-size="9">bat.</text>
+    <!-- interruptor -->
+    <circle class="so" cx="100" cy="60" r="5"/>
+    <circle class="so" cx="130" cy="60" r="5"/>
+    <line x1="100" y1="60" x2="126" y2="46"/>
+    <text x="115" y="38" text-anchor="middle" font-size="9">interruptor</text>
+    <text x="115" y="28" text-anchor="middle" font-size="9">(papel alumínio)</text>
+    <!-- LED 1 vermelho -->
+    <line x1="185" y1="60" x2="185" y2="98"/>
+    <polygon class="ef" points="175,98 195,98 185,118"/><line class="el" x1="175" y1="118" x2="195" y2="118"/>
+    <line class="el" x1="175" y1="122" x2="195" y2="122" class="ld"/>
+    <line class="el" x1="175" y1="126" x2="195" y2="126" class="ld"/>
+    <circle class="ef ld" cx="185" cy="108" r="14"/>
+    <text x="185" y="112" text-anchor="middle" font-size="9" fill="var(--em)">🔴</text>
+    <line x1="185" y1="122" x2="185" y2="170"/>
+    <text x="185" y="148" text-anchor="middle" font-size="9">LED</text>
+    <!-- LED 2 verde -->
+    <line x1="265" y1="60" x2="265" y2="98"/>
+    <circle class="hf ld2" cx="265" cy="108" r="14"/>
+    <text x="265" y="112" text-anchor="middle" font-size="9" fill="var(--hw)">🟢</text>
+    <line x1="265" y1="122" x2="265" y2="170"/>
+    <text x="265" y="148" text-anchor="middle" font-size="9">LED</text>
+    <!-- LED 3 amarelo -->
+    <line x1="345" y1="60" x2="345" y2="98"/>
+    <circle class="af ld3" cx="345" cy="108" r="14"/>
+    <text x="345" y="112" text-anchor="middle" font-size="9" fill="var(--a1)">🟡</text>
+    <line x1="345" y1="122" x2="345" y2="170"/>
+    <text x="345" y="148" text-anchor="middle" font-size="9">LED</text>
+    <!-- nota -->
+    <text x="230" y="210" text-anchor="middle" font-size="9">Em paralelo: se 1 LED queimar, os outros continuam acesos</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>3–6 LEDs coloridos</li><li>Bateria 9V</li><li>Fio elétrico fino</li><li>Papel alumínio</li><li>Caixa de papelão</li><li>Bolinhas de isopor</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Faça furos na caixa para os LEDs. A perna longa do LED é o positivo (+).</li>
+    <li data-n="2.">Conecte todas as pernas longas (+) num fio e todas as curtas (−) noutro — circuito paralelo.</li>
+    <li data-n="3.">Interruptor: dois quadrados de papel alumínio que se tocam ao apertar um botão de papelão.</li>
+    <li data-n="4.">Conecte tudo à bateria 9V pelo interruptor. Cubra LEDs com isopor para difundir a luz.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 1–1,5 h</span><span class="ctag">Elétrica</span></div>
+</div>
+
+<!-- PISTA DE BOLINHAS -->
+<div class="pc" id="c5">
+<div class="ch" onclick="tog('c5')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🎢</span>
+  <div class="cm"><p class="ct">Pista de Bolinhas</p>
+  <p class="cd2">Iniciante <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b5"><div class="cbi">
+  <p class="cde">Calhas em "U" formando zigue-zague vertical por onde bolinhas de gude deslizam pela gravidade.</p>
+  <div class="dw"><p class="dt">Diagrama — pista e perfil da calha em U</p>
+  <svg class="ps" viewBox="0 0 460 230" aria-label="Pista de bolinhas">
+    <!-- parede -->
+    <rect class="so" x="40" y="15" width="230" height="200" rx="3"/>
+    <!-- calhas ziguezague -->
+    <line x1="60" y1="45" x2="240" y2="65"/><line x1="240" y1="65" x2="240" y2="90"/>
+    <line x1="240" y1="90" x2="60" y2="110"/><line x1="60" y1="110" x2="60" y2="135"/>
+    <line x1="60" y1="135" x2="240" y2="155"/><line x1="240" y1="155" x2="240" y2="180"/>
+    <line x1="240" y1="180" x2="60" y2="200"/>
+    <!-- bolinha animada (estática — mostra posição) -->
+    <circle class="af" cx="80" cy="43" r="12"/>
+    <text x="80" y="32" text-anchor="middle" font-size="9" fill="var(--a1)">início</text>
+    <!-- setas de percurso -->
+    <line style="stroke:var(--a2);fill:none;stroke-width:1.5" x1="95" y1="47" x2="220" y2="62" marker-end="url(#ar2)"/>
+    <line style="stroke:var(--a2);fill:none;stroke-width:1.5" x1="225" y1="93" x2="75" y2="108" marker-end="url(#ar2)"/>
+    <line style="stroke:var(--a2);fill:none;stroke-width:1.5" x1="65" y1="138" x2="225" y2="153" marker-end="url(#ar2)"/>
+    <!-- destino -->
+    <circle class="so" cx="222" cy="195" r="12"/>
+    <text x="222" y="215" text-anchor="middle" font-size="9">saída</text>
+    <!-- PERFIL DA CALHA (canto direito) -->
+    <text x="345" y="30" text-anchor="middle" class="lb" font-size="10">PERFIL DA CALHA</text>
+    <line x1="310" y1="100" x2="310" y2="155"/>
+    <line x1="310" y1="155" x2="380" y2="155"/>
+    <line x1="380" y1="155" x2="380" y2="100"/>
+    <circle class="so" cx="345" cy="140" r="14"/>
+    <text x="345" y="144" text-anchor="middle" font-size="9">bolinha</text>
+    <text x="300" y="105" text-anchor="end" font-size="9">1 cm</text>
+    <text x="390" y="105" font-size="9">1 cm</text>
+    <text x="345" y="178" text-anchor="middle" font-size="9">base: 4 cm</text>
+    <line x1="305" y1="155" x2="385" y2="155" stroke-dasharray="3,2" style="stroke:#aaa"/>
+    <text x="345" y="200" text-anchor="middle" font-size="9">dobrar laterais para cima</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Papelão grosso (parede)</li><li>Tiras 4 cm (calhas)</li><li>Bolinhas de gude</li><li>Cola quente</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Calhas em "U": dobre tiras de 4 cm — base central + 1 cm dobrado para cima em cada lateral.</li>
+    <li data-n="2.">Planeje o zigue-zague de cima para baixo alternando a direção a cada nível.</li>
+    <li data-n="3.">Cole as calhas na parede vertical, sempre inclinadas ~8° para a bolinha rolar sozinha.</li>
+    <li data-n="4.">Nas curvas, aumente a lateral externa para a bolinha não cair. Teste e ajuste ângulos.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 1–2 h</span><span class="ctag">Física</span></div>
+</div>
+
+<!-- BRAÇO HIDRÁULICO -->
+<div class="pc" id="c6">
+<div class="ch" onclick="tog('c6')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🦾</span>
+  <div class="cm"><p class="ct">Braço Robótico Hidráulico</p>
+  <p class="cd2">Avançado <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b6"><div class="cbi">
+  <p class="cde">Braço articulado com 3 juntas controladas por 3 pares de seringa ligadas por mangueira.</p>
+  <div class="dw"><p class="dt">Diagrama — estrutura de segmentos e controle hidráulico</p>
+  <svg class="ps" viewBox="0 0 460 268" aria-label="Braço robótico hidráulico">
+    <!-- base -->
+    <rect class="so" x="30" y="190" width="80" height="25" rx="3"/>
+    <text x="70" y="206" text-anchor="middle" font-size="10">BASE</text>
+    <!-- seg 1 vertical -->
+    <rect class="so" x="58" y="120" width="22" height="72" rx="3"/>
+    <text x="50" y="155" text-anchor="end" font-size="9">seg 1</text>
+    <!-- junta 1 -->
+    <circle class="af" cx="69" cy="120" r="10"/>
+    <text x="69" y="108" text-anchor="middle" font-size="9" fill="var(--a1)">J1</text>
+    <!-- seringa controle J1 -->
+    <rect class="hf" x="100" y="128" width="48" height="16" rx="3"/>
+    <rect class="hf" x="88" y="132" width="14" height="8" rx="2"/>
+    <text x="124" y="122" text-anchor="middle" font-size="9" fill="var(--hw)">par A</text>
+    <!-- mangueira J1 -->
+    <path class="hy wf" d="M148,136 Q175,136 185,160"/>
+    <!-- seringa externa J1 -->
+    <rect class="hf" x="185" y="155" width="48" height="16" rx="3"/>
+    <text x="209" y="150" text-anchor="middle" font-size="9" fill="var(--hw)">controle A</text>
+    <!-- seg 2 diagonal -->
+    <line class="so" x1="69" y1="120" x2="155" y2="75" stroke-width="18"/>
+    <text x="125" y="88" fill="var(--bg)" font-size="9" text-anchor="middle">seg 2</text>
+    <!-- junta 2 -->
+    <circle class="af" cx="155" cy="75" r="10"/>
+    <text x="155" y="63" text-anchor="middle" font-size="9" fill="var(--a1)">J2</text>
+    <!-- seringa J2 -->
+    <rect class="hf" x="175" y="65" width="48" height="16" rx="3"/>
+    <text x="199" y="59" text-anchor="middle" font-size="9" fill="var(--hw)">par B</text>
+    <!-- seg 3 -->
+    <line class="so" x1="155" y1="75" x2="255" y2="65" stroke-width="16"/>
+    <text x="205" y="70" fill="var(--bg)" font-size="9" text-anchor="middle">seg 3</text>
+    <!-- garra -->
+    <line class="ac" x1="255" y1="65" x2="280" y2="52"/>
+    <line class="ac" x1="255" y1="65" x2="280" y2="78"/>
+    <line class="ac" x1="255" y1="52" x2="255" y2="78"/>
+    <text x="292" y="67" font-size="9">garra</text>
+    <!-- seringa garra -->
+    <rect class="hf" x="270" y="82" width="40" height="14" rx="2"/>
+    <text x="290" y="110" text-anchor="middle" font-size="9" fill="var(--hw)">par C (garra)</text>
+    <!-- fluxo água animado -->
+    <path class="hy wf" d="M148,136 Q165,136 175,68"/>
+    <path class="hy wf" d="M223,73 Q240,73 270,89"/>
+    <!-- legenda -->
+    <line x1="30" y1="256" x2="430" y2="256" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="266" text-anchor="middle" font-size="9">Pares A/B/C: empurrar seringa abre a junta; puxar fecha. Use água para mais força.</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Papelão duplo (3 barras)</li><li>6 seringas 5 ml</li><li>3 mangueiras 30 cm</li><li>Palitos (pinos)</li><li>Água (preencher)</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Segmentos: 3 barras de papelão duplo 5×20, 5×15 e 5×10 cm — 2–3 camadas coladas.</li>
+    <li data-n="2.">Juntas: palito como pino em cada conexão. Perfure os dois segmentos e passe o palito.</li>
+    <li data-n="3.">Em cada junta, cole um par de seringas 5 ml nos lados opostos do pino.</li>
+    <li data-n="4.">Conecte cada par com mangueira. Preencha de água devagar, sem bolhas.</li>
+    <li data-n="5.">Garra: duas peças articuladas na ponta do seg 3, controladas pelo par C.</li>
+    <li data-n="6.">Coordene A, B e C para mover o braço em 3 eixos e pegar objetos leves.</li>
+  </ul>
+  <div class="tb water">Preencha as mangueiras com água inclinando as seringas para cima e empurrando devagar — elimina bolhas de ar que enfraquecem o movimento.</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 3–4 h</span><span class="ctag hy2">Hidráulica</span></div>
+</div>
+
+<!-- GARAGEM HIDRÁULICA -->
+<div class="pc" id="c7">
+<div class="ch" onclick="tog('c7')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🏢</span>
+  <div class="cm"><p class="ct">Garagem 2 Andares Hidráulica</p>
+  <p class="cd2">Avançado <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b7"><div class="cbi">
+  <p class="cde">Garagem com plataforma que sobe entre os andares empurrada por seringa com água.</p>
+  <div class="dw"><p class="dt">Diagrama — corte lateral da garagem hidráulica</p>
+  <svg class="ps" viewBox="0 0 460 295" aria-label="Garagem hidráulica">
+    <!-- estrutura 2 andares -->
+    <rect class="so" x="50" y="25" width="200" height="195"/>
+    <line x1="50" y1="125" x2="250" y2="125"/>
+    <text x="150" y="182" text-anchor="middle">1° andar</text>
+    <text x="150" y="72" text-anchor="middle">2° andar</text>
+    <!-- plataforma -->
+    <rect class="af" x="68" y="113" width="164" height="14" rx="2"/>
+    <text x="150" y="108" text-anchor="middle" font-size="10" fill="var(--a1)" font-weight="700">PLATAFORMA</text>
+    <!-- carro -->
+    <rect class="so" x="80" y="88" width="95" height="26" rx="5"/>
+    <circle class="so" cx="97" cy="114" r="9"/><circle class="so" cx="162" cy="114" r="9"/>
+    <text x="128" y="104" text-anchor="middle" font-size="9">carro</text>
+    <!-- seringa interna -->
+    <rect class="hf" x="130" y="127" width="22" height="50" rx="3"/>
+    <rect class="hf pist" x="133" y="153" width="16" height="26" rx="2"/>
+    <text x="100" y="148" text-anchor="end" font-size="9" fill="var(--hw)">seringa</text>
+    <text x="100" y="160" text-anchor="end" font-size="9" fill="var(--hw)">interna</text>
+    <!-- seta sobe -->
+    <line style="stroke:var(--a2);fill:none;stroke-width:2" x1="272" y1="113" x2="272" y2="93" marker-end="url(#ar2)"/>
+    <text x="282" y="106" font-size="9">sobe</text>
+    <!-- mangueira animada — com mais espaço vertical -->
+    <path class="hy wf" d="M141,177 Q141,240 308,240" stroke-dasharray="8,4"/>
+    <!-- seringa externa — posicionada abaixo da garagem com espaço -->
+    <rect class="hf" x="308" y="228" width="70" height="22" rx="3"/>
+    <rect class="hf pist2" x="296" y="232" width="14" height="14" rx="2"/>
+    <!-- seta empurrar separada da seringa -->
+    <line class="ac" x1="286" y1="239" x2="294" y2="239" marker-end="url(#ar)"/>
+    <!-- labels fora dos elementos -->
+    <text x="343" y="222" text-anchor="middle" font-size="9" fill="var(--hw)">seringa externa</text>
+    <text x="265" y="255" text-anchor="middle" font-size="9" fill="var(--hw)">mangueira</text>
+    <text x="255" y="244" text-anchor="end" font-size="9" fill="var(--a1)">← empurrar</text>
+    <!-- legenda separada na parte inferior -->
+    <line x1="30" y1="272" x2="430" y2="272" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="285" text-anchor="middle" font-size="9">Empurrar seringa externa → água comprime seringa interna → plataforma sobe</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>2 caixas empilhadas</li><li>Papelão rígido (plataforma)</li><li>2 seringas 20 ml</li><li>Mangueira 40 cm</li><li>Água</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Empilhe e cole as duas caixas abertas na frente formando uma garagem de 2 andares.</li>
+    <li data-n="2.">Plataforma: papelão rígido com trilhos laterais para subir/descer sem tombar.</li>
+    <li data-n="3.">Posicione a seringa interna em pé sob a plataforma (êmbolo apontando para cima).</li>
+    <li data-n="4.">Conecte mangueira entre seringa interna e a externa (fora da garagem). Preencha com água.</li>
+    <li data-n="5.">Empurre a seringa externa — a interna eleva a plataforma. Puxe — desce.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 2–3 h</span><span class="ctag hy2">Hidráulica</span></div>
+</div>
+
+<!-- LABIRINTO -->
+<div class="pc" id="c8">
+<div class="ch" onclick="tog('c8')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🏆</span>
+  <div class="cm"><p class="ct">Labirinto de Destreza</p>
+  <p class="cd2">Iniciante <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b8"><div class="cbi">
+  <p class="cde">Labirinto com armadilhas: incline a plataforma para guiar a bolinha sem cair nos buracos.</p>
+  <div class="dw"><p class="dt">Diagrama — vista superior do labirinto e suporte em X</p>
+  <svg class="ps" viewBox="0 0 460 230" aria-label="Labirinto">
+    <!-- moldura -->
+    <rect class="so" x="30" y="20" width="220" height="190" rx="3"/>
+    <!-- paredes internas -->
+    <line x1="80" y1="20" x2="80" y2="110"/><line x1="80" y1="110" x2="170" y2="110"/>
+    <line x1="170" y1="110" x2="170" y2="20"/><line x1="125" y1="110" x2="125" y2="160"/>
+    <line x1="30" y1="140" x2="125" y2="140"/><line x1="170" y1="150" x2="250" y2="150"/>
+    <line x1="210" y1="110" x2="210" y2="150"/>
+    <!-- armadilhas -->
+    <circle class="ef" cx="55" cy="65" r="12"/><text x="55" y="69" text-anchor="middle" font-size="9" fill="var(--em)">1</text>
+    <circle class="ef" cx="125" cy="58" r="12"/><text x="125" y="62" text-anchor="middle" font-size="9" fill="var(--em)">2</text>
+    <circle class="ef" cx="200" cy="68" r="12"/><text x="200" y="72" text-anchor="middle" font-size="9" fill="var(--em)">3</text>
+    <circle class="ef" cx="70" cy="165" r="12"/><text x="70" y="169" text-anchor="middle" font-size="9" fill="var(--em)">4</text>
+    <circle class="ef" cx="220" cy="175" r="12"/><text x="220" y="179" text-anchor="middle" font-size="9" fill="var(--em)">5</text>
+    <!-- start / end -->
+    <circle class="so" cx="45" cy="28" r="10"/><text x="45" y="19" text-anchor="middle" font-size="9">START</text>
+    <polygon class="af" points="228,198 244,198 236,184"/><text x="236" y="215" text-anchor="middle" font-size="9" fill="var(--a1)">FIM</text>
+    <!-- suporte em X -->
+    <text x="360" y="30" text-anchor="middle" class="lb" font-size="10">SUPORTE EM X</text>
+    <line x1="315" y1="70" x2="405" y2="160"/>
+    <line x1="405" y1="70" x2="315" y2="160"/>
+    <rect class="so" x="305" y="155" width="110" height="14" rx="3"/>
+    <text x="360" y="186" text-anchor="middle" font-size="9">Incline em qualquer direção</text>
+    <text x="360" y="198" text-anchor="middle" font-size="9">girando os bastões em X</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Papelão duplo 30×30 cm</li><li>Tiras internas (paredes)</li><li>2 bastões (suporte X)</li><li>Bolinha de gude</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Base 30×30 cm com bordas de 2 cm coladas em todo o perímetro.</li>
+    <li data-n="2.">Planeje o labirinto no papel antes de colar as paredes internas.</li>
+    <li data-n="3.">Corte os buracos-armadilha (diâmetro = bolinha + 2 mm) em pontos estratégicos.</li>
+    <li data-n="4.">Suporte: dois bastões cruzados em X fixados na parte inferior — permitem inclinar em todas as direções.</li>
+    <li data-n="5.">Marque START e FIM. Numere as armadilhas. Cair = voltar ao buraco anterior.</li>
+  </ul>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 45 min</span><span class="ctag">Jogo</span></div>
+</div>
+
+<!-- BOMBA HIDRÁULICA BÁSICA -->
+<div class="pc" id="c9">
+<div class="ch" onclick="tog('c9')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">💧</span>
+  <div class="cm"><p class="ct">Bomba Hidráulica com Seringa</p>
+  <p class="cd2">Intermediário <span class="dots"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="b9"><div class="cbi">
+  <p class="cde">Sistema de bomba que transfere água de um reservatório a outro usando seringa como pistão, com válvulas anti-retorno feitas de tampinha.</p>
+  <div class="dw"><p class="dt">Diagrama — sistema de bomba hidráulica com válvulas</p>
+  <svg class="ps" viewBox="0 0 460 268" aria-label="Bomba hidráulica">
+    <!-- reservatório A -->
+    <rect class="hf" x="20" y="80" width="80" height="100" rx="4"/>
+    <text x="60" y="140" text-anchor="middle" class="lb" fill="var(--hw)" font-size="10">RES. A</text>
+    <text x="60" y="155" text-anchor="middle" font-size="9" fill="var(--hw)">(saída)</text>
+    <!-- nível de água A -->
+    <rect style="fill:#0077BB55;stroke:none" x="21" y="120" width="78" height="59" rx="0 0 4 4"/>
+    <!-- cano entrada bomba -->
+    <line class="hy" x1="100" y1="155" x2="145" y2="155"/>
+    <!-- válvula check entrada -->
+    <polygon class="hf" points="145,145 145,165 162,155"/>
+    <line class="hy" x1="162" y1="145" x2="162" y2="165"/>
+    <text x="153" y="140" text-anchor="middle" font-size="8" fill="var(--hw)">válv. in</text>
+    <!-- câmara da bomba (seringa) -->
+    <rect class="hf" x="165" y="130" width="80" height="50" rx="5"/>
+    <text x="205" y="160" text-anchor="middle" class="lb" fill="var(--hw)" font-size="10">BOMBA</text>
+    <text x="205" y="175" text-anchor="middle" font-size="9" fill="var(--hw)">(seringa 30ml)</text>
+    <!-- êmbolo animado -->
+    <rect style="fill:#0077BB88;stroke:var(--hw);stroke-width:2" class="pist" x="170" y="134" width="35" height="42" rx="3"/>
+    <!-- haste -->
+    <line class="hy" x1="205" y1="135" x2="205" y2="110"/>
+    <rect class="hf" x="195" y="100" width="20" height="12" rx="2"/>
+    <text x="205" y="95" text-anchor="middle" font-size="9" fill="var(--hw)">êmbolo</text>
+    <!-- válvula check saída -->
+    <line class="hy" x1="245" y1="155" x2="268" y2="155"/>
+    <polygon class="hf" points="268,145 268,165 285,155"/>
+    <line class="hy" x1="285" y1="145" x2="285" y2="165"/>
+    <text x="276" y="140" text-anchor="middle" font-size="8" fill="var(--hw)">válv. out</text>
+    <!-- cano saída -->
+    <line class="hy" x1="285" y1="155" x2="340" y2="155"/>
+    <!-- reservatório B -->
+    <rect class="hf" x="340" y="80" width="100" height="100" rx="4"/>
+    <text x="390" y="130" text-anchor="middle" class="lb" fill="var(--hw)" font-size="10">RES. B</text>
+    <text x="390" y="145" text-anchor="middle" font-size="9" fill="var(--hw)">(chegada)</text>
+    <!-- nível B subindo -->
+    <rect style="fill:#0077BB55;stroke:none" x="341" y="150" width="98" height="29" rx="0 0 4 4"/>
+    <!-- fluxo animado -->
+    <path class="hy wf" d="M102,155 L143,155"/>
+    <path class="hy wf" d="M287,155 L338,155"/>
+    <!-- indicador puxar/empurrar com espaço abaixo do êmbolo -->
+    <line class="ac" x1="205" y1="210" x2="205" y2="193" marker-end="url(#ar)"/>
+    <line class="ac" x1="205" y1="210" x2="205" y2="228"/>
+    <text x="220" y="215" font-size="9">puxar</text>
+    <text x="220" y="227" font-size="9">empurrar</text>
+    <!-- legenda separada por linha -->
+    <line x1="30" y1="244" x2="430" y2="244" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="256" text-anchor="middle" font-size="8">Puxar êmbolo: válvula A abre, água entra | Empurrar: válvula B abre, água sai</text>
+  </svg></div>
+  <p class="cml-l">Materiais</p>
+  <ul class="cml"><li>Seringa 30 ml (bomba)</li><li>2 tampas PET (válvulas)</li><li>Mangueira aquário</li><li>2 garrafas PET cortadas</li><li>Bolinha pequena (válvula)</li><li>Cola quente</li></ul>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Reservatórios: 2 garrafas PET cortadas ao meio, abertas para cima. Encha o reservatório A com água colorida.</li>
+    <li data-n="2.">Válvula check: perfure uma tampa PET no centro. Dentro do furo, cole uma bolinha pequena que tapa ao empurrar mas abre ao puxar.</li>
+    <li data-n="3.">Monte: mangueira → válvula check → seringa → válvula check → mangueira saída. As setas das válvulas apontam na mesma direção (A→B).</li>
+    <li data-n="4.">Puxe o êmbolo: válvula entrada abre, água do reservatório A entra na seringa.</li>
+    <li data-n="5.">Empurre o êmbolo: válvula entrada fecha, válvula saída abre, água vai para o reservatório B.</li>
+    <li data-n="6.">Repita alternando puxar/empurrar para transferir toda a água de A para B.</li>
+  </ul>
+  <div class="tb water">Use água com corante alimentício para visualizar o fluxo. Observe como as válvulas impedem o refluxo!</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 1,5–2 h</span><span class="ctag hy2">Hidráulica</span></div>
+</div>
+
+</div><!-- /grid básico -->
+
+<!-- ═══════════════════════════════════════
+     PROJETOS AVANÇADOS
+═══════════════════════════════════════ -->
+<p class="sl">Projetos Avançados — Motor, Eletricidade e Hidráulica<span class="anim-badge">▶ Animados</span></p>
+<div class="pg">
+
+<!-- CARRO MOTORIZADO -->
+<div class="pc adv" id="ca1">
+<div class="ch" onclick="tog('ca1')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">⚙️</span>
+  <div class="cm"><p class="ct">Carro com Motor DC</p>
+  <p class="cd2">Intermediário <span class="dots"><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="ba1"><div class="cbi">
+  <p class="cde">Chassi de papelão com motor DC ligado a fios com jacaré e 4 pilhas AA — transmissão direta às rodas traseiras ou por hélice propulsora.</p>
+  <div class="dw"><p class="dt">Diagrama animado — carro com motor DC e fios jacaré</p>
+  <svg class="ps" viewBox="0 0 460 268" aria-label="Carro motorizado">
+    <!-- chassi -->
+    <rect class="so" x="60" y="100" width="280" height="55" rx="6"/>
+    <text x="200" y="130" text-anchor="middle" class="lb">CHASSIS (papelão duplo)</text>
+    <!-- rodas dianteiras (giram) -->
+    <g class="spin"><circle class="so" cx="110" cy="100" r="28"/>
+    <line x1="110" y1="72" x2="110" y2="128"/><line x1="82" y1="100" x2="138" y2="100"/>
+    <line x1="88" y1="78" x2="132" y2="122"/><line x1="88" y1="122" x2="132" y2="78"/></g>
+    <g class="spin"><circle class="so" cx="110" cy="155" r="28"/>
+    <line x1="110" y1="127" x2="110" y2="183"/><line x1="82" y1="155" x2="138" y2="155"/>
+    <line x1="88" y1="133" x2="132" y2="177"/><line x1="88" y1="177" x2="132" y2="133"/></g>
+    <!-- rodas traseiras (giram mais rápido) -->
+    <g style="transform-box:fill-box;transform-origin:center;animation:spin .9s linear infinite"><circle class="so" cx="300" cy="100" r="28"/>
+    <line x1="300" y1="72" x2="300" y2="128"/><line x1="272" y1="100" x2="328" y2="100"/>
+    <line x1="278" y1="78" x2="322" y2="122"/><line x1="278" y1="122" x2="322" y2="78"/></g>
+    <g style="transform-box:fill-box;transform-origin:center;animation:spin .9s linear infinite"><circle class="so" cx="300" cy="155" r="28"/>
+    <line x1="300" y1="127" x2="300" y2="183"/><line x1="272" y1="155" x2="328" y2="155"/>
+    <line x1="278" y1="133" x2="322" y2="177"/><line x1="278" y1="177" x2="322" y2="133"/></g>
+    <!-- motor -->
+    <rect class="mf" x="200" y="108" width="55" height="38" rx="4"/>
+    <text x="227" y="122" text-anchor="middle" font-size="9" fill="var(--a3)">MOTOR</text>
+    <text x="227" y="136" text-anchor="middle" font-size="9" fill="var(--a3)">DC 3–6V</text>
+    <!-- eixo motor → roda -->
+    <line class="mo" x1="255" y1="127" x2="272" y2="127" stroke-dasharray="3,2"/>
+    <!-- bateria (4xAA) -->
+    <rect class="so" x="80" y="108" width="60" height="38" rx="3"/>
+    <text x="110" y="122" text-anchor="middle" font-size="9">4×AA</text>
+    <text x="110" y="136" text-anchor="middle" font-size="9">6V</text>
+    <!-- fios com jacaré animados -->
+    <path class="ef" d="M200,118 Q175,100 140,114" stroke-dasharray="6,4"/>
+    <path class="ef" d="M200,138 Q175,155 140,146" stroke-dasharray="6,4"/>
+    <!-- jacarés -->
+    <ellipse class="ef" cx="143" cy="112" rx="8" ry="5" transform="rotate(-20 143 112)"/>
+    <ellipse class="ef" cx="143" cy="148" rx="8" ry="5" transform="rotate(20 143 148)"/>
+    <text x="155" y="105" font-size="9" fill="var(--em)">jacaré +</text>
+    <text x="155" y="155" font-size="9" fill="var(--em)">jacaré −</text>
+    <!-- fluxo elétrico -->
+    <path class="el ef" d="M200,118 Q175,100 140,114" stroke-dasharray="4,8"/>
+    <!-- legenda -->
+    <line x1="30" y1="244" x2="430" y2="244" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="256" text-anchor="middle" font-size="9">Motor DC ligado à bateria pelos fios com jacaré — rodas traseiras recebem o torque</text>
+    <text x="230" y="265" text-anchor="middle" font-size="9">Inverta os jacarés para inverter o sentido de rotação</text>
+  </svg></div>
+  <div class="mb2"><h4>Materiais Específicos</h4>
+  <ul><li>Motor DC 3V–6V</li><li>4 pilhas AA (ou 1 bateria 9V + resistor)</li><li>2 fios com jacaré</li><li>Papelão duplo (chassi)</li><li>4 tampas PET (rodas)</li><li>Canudos + palitos (eixos)</li><li>Cola quente</li><li>Interruptor (papel alumínio)</li></ul></div>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Chassi: papelão duplo 25×10 cm. Dobre 1 cm nas laterais. Monte as rodas com canudo+palito+PET (igual ao automóvel básico).</li>
+    <li data-n="2.">Fixe o motor DC na parte traseira com cola quente. O eixo do motor deve coincidir com o eixo traseiro das rodas.</li>
+    <li data-n="3.">Acoplamento: prenda um pedaço de borracha (tampa de caneta) no eixo do motor. Conecte ao palito das rodas com cola — ou use uma correia de elástico.</li>
+    <li data-n="4.">Conecte os dois fios com jacaré: jacaré vermelho no terminal + do motor, jacaré preto no terminal −.</li>
+    <li data-n="5.">Prenda 4 pilhas AA em série (6V). Conecte os jacarés nos polos + e − das pilhas.</li>
+    <li data-n="6.">Interruptor: duas tiras de papel alumínio que se tocam — coloque entre os fios para ligar/desligar.</li>
+  </ul>
+  <div class="tb motor">Se o motor girar na direção errada, inverta os jacarés. Se girar devagar, verifique se as pilhas estão novas e o eixo não está roçando no papelão.</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 1,5–2 h</span><span class="ctag mo2">Motor DC</span></div>
+</div>
+
+<!-- VENTILADOR ELÉTRICO -->
+<div class="pc adv" id="ca2">
+<div class="ch" onclick="tog('ca2')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🌀</span>
+  <div class="cm"><p class="ct">Ventilador Elétrico Caseiro</p>
+  <p class="cd2">Intermediário <span class="dots"><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="ba2"><div class="cbi">
+  <p class="cde">Motor DC com hélice de papelão (3 pás) ligado por fios com jacaré. Um lápis grafite serve como resistor para controlar a velocidade.</p>
+  <div class="dw"><p class="dt">Diagrama animado — ventilador com controle de velocidade</p>
+  <svg class="ps" viewBox="0 0 460 268" aria-label="Ventilador elétrico">
+    <!-- base suporte -->
+    <rect class="so" x="155" y="185" width="110" height="16" rx="3"/>
+    <line x1="210" y1="165" x2="210" y2="185"/>
+    <!-- motor -->
+    <rect class="mf" x="183" y="130" width="54" height="38" rx="5"/>
+    <text x="210" y="148" text-anchor="middle" font-size="9" fill="var(--a3)">MOTOR</text>
+    <text x="210" y="162" text-anchor="middle" font-size="9" fill="var(--a3)">DC</text>
+    <!-- hélice animada (3 pás) -->
+    <g class="spin">
+      <circle class="mf" cx="210" cy="100" r="8"/>
+      <!-- pá 1 -->
+      <ellipse class="mf" cx="210" cy="68" rx="10" ry="25" transform="rotate(0 210 100)"/>
+      <!-- pá 2 -->
+      <ellipse class="mf" cx="210" cy="68" rx="10" ry="25" transform="rotate(120 210 100)"/>
+      <!-- pá 3 -->
+      <ellipse class="mf" cx="210" cy="68" rx="10" ry="25" transform="rotate(240 210 100)"/>
+    </g>
+    <text x="210" y="35" text-anchor="middle" font-size="9" fill="var(--a3)">hélice (3 pás de papelão)</text>
+    <!-- fio + (vermelho) -->
+    <path class="el ef" d="M183,140 Q140,140 80,120" stroke-dasharray="5,5"/>
+    <!-- jacaré + -->
+    <ellipse class="ef" cx="75" cy="118" rx="10" ry="6" transform="rotate(-10 75 118)"/>
+    <text x="55" y="108" font-size="9" fill="var(--em)">jacaré +</text>
+    <!-- lápis como resistor -->
+    <rect class="so" x="60" y="165" width="100" height="14" rx="6"/>
+    <text x="110" y="175" text-anchor="middle" font-size="9">lápis (resistor)</text>
+    <text x="110" y="155" text-anchor="middle" font-size="9">→ mover jacaré altera velocidade</text>
+    <!-- fio - (azul) -->
+    <path class="hy ef" d="M237,140 Q290,140 360,130" stroke-dasharray="5,5"/>
+    <!-- jacaré - -->
+    <ellipse class="hf" cx="365" cy="128" rx="10" ry="6" transform="rotate(10 365 128)"/>
+    <text x="375" y="118" font-size="9" fill="var(--hw)">jacaré −</text>
+    <!-- bateria -->
+    <rect class="so" x="340" y="160" width="70" height="42" rx="4"/>
+    <line x1="352" y1="155" x2="398" y2="155"/><line x1="358" y1="150" x2="392" y2="150"/>
+    <text x="375" y="183" text-anchor="middle" font-size="9">9V ou</text>
+    <text x="375" y="197" text-anchor="middle" font-size="9">4×AA</text>
+    <!-- legenda -->
+    <line x1="30" y1="244" x2="430" y2="244" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="256" text-anchor="middle" font-size="9">Lápis = resistor variável: jacaré na ponta → máxima velocidade</text>
+    <text x="230" y="265" text-anchor="middle" font-size="9">Mover jacaré para o meio → aumenta resistência → reduz velocidade</text>
+  </svg></div>
+  <div class="mb2"><h4>Materiais Específicos</h4>
+  <ul><li>Motor DC 3V–6V</li><li>Papelão (3 pás de hélice)</li><li>2 fios com jacaré</li><li>Bateria 9V ou 4×AA</li><li>Lápis grafite 2B (resistor)</li><li>Caixa papelão (suporte)</li><li>Cola quente + fita adesiva</li></ul></div>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Hélice: recorte 3 elipses de papelão 10×4 cm. Dobre uma extremidade de cada uma (10°). Cole as 3 em Y ao redor do eixo do motor, equidistantes a 120°.</li>
+    <li data-n="2.">Suporte: caixa de papelão com furo no centro para o motor. Cole o motor no furo com a hélice voltada para frente.</li>
+    <li data-n="3.">Conecte o jacaré vermelho ao polo + do motor e ao polo + da bateria.</li>
+    <li data-n="4.">Controle de velocidade: coloque o lápis grafite no circuito negativo. O grafite tem resistência elétrica — mover o jacaré ao longo do lápis altera a velocidade.</li>
+    <li data-n="5.">Ligue e observe a hélice girar. Para inverter o sentido (ventilador/exaustor), troque os jacarés.</li>
+  </ul>
+  <div class="tb motor">O grafite do lápis 2B ou 6B tem mais resistência que o HB — experimente lápis diferentes para ver como afetam a velocidade.</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 1–1,5 h</span><span class="ctag mo2">Motor DC</span></div>
+</div>
+
+<!-- DÍNAMO GERADOR -->
+<div class="pc adv" id="ca3">
+<div class="ch" onclick="tog('ca3')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">⚡</span>
+  <div class="cm"><p class="ct">Dínamo Gerador Caseiro</p>
+  <p class="cd2">Avançado <span class="dots"><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="ba3"><div class="cbi">
+  <p class="cde">Bobina de fio de cobre esmaltado + imã de neodímio girando = corrente elétrica gerada. Liga um LED sem nenhuma bateria.</p>
+  <div class="dw"><p class="dt">Diagrama animado — gerador por indução eletromagnética</p>
+  <svg class="ps" viewBox="0 0 460 265" aria-label="Dínamo gerador">
+    <!-- bobina estática (núcleo) -->
+    <rect class="so" x="155" y="90" width="120" height="70" rx="4"/>
+    <text x="215" y="125" text-anchor="middle" class="lb" font-size="10">BOBINA</text>
+    <text x="215" y="140" text-anchor="middle" font-size="9">fio de cobre</text>
+    <text x="215" y="152" text-anchor="middle" font-size="9">esmaltado ~150 espiras</text>
+    <!-- espiras decorativas -->
+    <path d="M165,100 Q215,90 265,100" stroke="var(--a2)" fill="none" stroke-width="1.5"/>
+    <path d="M165,106 Q215,96 265,106" stroke="var(--a2)" fill="none" stroke-width="1.5"/>
+    <path d="M165,112 Q215,102 265,112" stroke="var(--a2)" fill="none" stroke-width="1.5"/>
+    <!-- imã girando ao redor -->
+    <g class="spin" style="transform-origin:215px 125px">
+      <rect class="af" x="95" y="112" width="50" height="26" rx="4"/>
+      <text x="120" y="128" text-anchor="middle" font-size="10" fill="var(--a1)" font-weight="700">N</text>
+      <rect class="hf" x="285" y="112" width="50" height="26" rx="4"/>
+      <text x="310" y="128" text-anchor="middle" font-size="10" fill="var(--hw)" font-weight="700">S</text>
+      <line style="stroke:var(--mu);stroke-width:1;stroke-dasharray:3,3" x1="145" y1="125" x2="285" y2="125"/>
+    </g>
+    <!-- fios de saída -->
+    <line class="el" x1="155" y1="105" x2="80" y2="105"/>
+    <line class="el" x1="155" y1="145" x2="80" y2="145"/>
+    <!-- fluxo elétrico gerado -->
+    <path class="el ef" d="M155,105 L80,105 L80,130 L55,130" stroke-dasharray="5,5"/>
+    <path class="el ef" d="M155,145 L80,145" stroke-dasharray="5,5"/>
+    <!-- LED -->
+    <circle class="ef ld" cx="45" cy="125" r="18"/>
+    <text x="45" y="129" text-anchor="middle" font-size="9" fill="var(--em)">LED</text>
+    <text x="45" y="152" text-anchor="middle" font-size="9">acende!</text>
+    <!-- suporte -->
+    <line x1="215" y1="160" x2="215" y2="210"/>
+    <rect class="so" x="165" y="208" width="100" height="16" rx="3"/>
+    <text x="215" y="220" text-anchor="middle" font-size="9">suporte de papelão</text>
+    <!-- eixo do imã -->
+    <line x1="215" y1="90" x2="215" y2="80"/>
+    <text x="255" y="75" font-size="9">eixo do imã (palito)</text>
+    <!-- seta girar -->
+    <path d="M100,80 Q150,50 215,60 Q270,50 320,80" stroke="var(--a3)" fill="none" stroke-width="2" marker-end="url(#ar4)"/>
+    <text x="215" y="48" text-anchor="middle" font-size="9" fill="var(--a3)">girar o eixo → gera corrente → LED acende</text>
+    <!-- legenda -->
+    <line x1="30" y1="248" x2="430" y2="248" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="260" text-anchor="middle" font-size="9">Princípio: imã girando altera o campo magnético da bobina → induz corrente elétrica</text>
+  </svg></div>
+  <div class="mb2"><h4>Materiais Específicos</h4>
+  <ul><li>Fio de cobre esmaltado 0,3 mm (10 m)</li><li>2 imãs de neodímio</li><li>Palito longo (eixo)</li><li>Papelão (carretel + suporte)</li><li>LED (prefira vermelho — acende com menos tensão)</li><li>Lixa fina (para expor ponta do fio)</li><li>Cola quente</li></ul></div>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Carretel: recorte dois círculos de papelão 8 cm de diâmetro com furo central. Cole um canudo no centro como núcleo.</li>
+    <li data-n="2.">Enrole o fio de cobre ao redor do canudo (~150 espiras bem juntas). Deixe 15 cm de fio em cada extremidade.</li>
+    <li data-n="3.">Lixe 2 cm de cada extremidade do fio para remover o esmalte e expor o cobre brilhante.</li>
+    <li data-n="4.">Suporte: caixa de papelão com furo central. O carretel fica suspenso dentro pelo canudo-eixo.</li>
+    <li data-n="5.">Imã: cole dois imãs de neodímio nas extremidades de um palito comprido, com polos opostos. O palito gira em torno da bobina.</li>
+    <li data-n="6.">Conecte as duas extremidades do fio ao LED (sem polaridade fixa, pois gera AC). Gire o eixo rápido — o LED acende!</li>
+  </ul>
+  <div class="tb motor">Use LED vermelho ou verde: acendem com ~1,8V. LEDs azuis precisam de ~3V e são mais difíceis de acender com este gerador caseiro.</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 2–3 h</span><span class="ctag mo2">Eletromagnetismo</span></div>
+</div>
+
+<!-- SEMÁFORO COM LEDS -->
+<div class="pc adv" id="ca4">
+<div class="ch" onclick="tog('ca4')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🚦</span>
+  <div class="cm"><p class="ct">Semáforo com LEDs e Jacarés</p>
+  <p class="cd2">Intermediário <span class="dots"><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="ba4"><div class="cbi">
+  <p class="cde">Semáforo funcional com 3 LEDs (vermelho, amarelo, verde) ligados individualmente por fios com jacaré e 3 interruptores de papel alumínio.</p>
+  <div class="dw"><p class="dt">Diagrama animado — semáforo com circuito independente por cor</p>
+  <svg class="ps" viewBox="0 0 460 260" aria-label="Semáforo LED">
+    <!-- corpo semáforo -->
+    <rect class="so" x="170" y="20" width="90" height="170" rx="10"/>
+    <!-- LED vermelho -->
+    <circle style="fill:#CC2200;stroke:#FF4444;stroke-width:2" class="bk1" cx="215" cy="65" r="28"/>
+    <text x="215" y="69" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">STOP</text>
+    <!-- LED amarelo -->
+    <circle style="fill:#CC8800;stroke:#FFCC00;stroke-width:2" class="bk2" cx="215" cy="125" r="28"/>
+    <text x="215" y="129" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">ATEN</text>
+    <!-- LED verde -->
+    <circle style="fill:#006600;stroke:#00CC44;stroke-width:2" class="bk3" cx="215" cy="185" r="28"/>
+    <text x="215" y="189" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">VÁ</text>
+    <!-- poste -->
+    <line x1="215" y1="190" x2="215" y2="230"/>
+    <rect class="so" x="175" y="228" width="80" height="12" rx="3"/>
+    <!-- fios e jacarés (circuito) -->
+    <!-- fio vermelho -->
+    <path class="el ef" d="M170,65 Q120,65 70,100" stroke-dasharray="5,5"/>
+    <ellipse class="ef" cx="67" cy="103" rx="10" ry="6" transform="rotate(-15 67 103)"/>
+    <text x="40" y="95" font-size="9" fill="var(--em)">chave 1</text>
+    <!-- fio amarelo -->
+    <path style="stroke:#CC8800;stroke-width:2;fill:none" class="ef" d="M170,125 Q120,125 70,140" stroke-dasharray="5,5"/>
+    <ellipse style="fill:#CC880033;stroke:#CC8800;stroke-width:2" cx="67" cy="143" rx="10" ry="6" transform="rotate(-5 67 143)"/>
+    <text x="40" y="135" font-size="9" fill="#BB7700">chave 2</text>
+    <!-- fio verde -->
+    <path class="hy ef" d="M170,185 Q120,185 70,175" stroke-dasharray="5,5"/>
+    <ellipse class="hf" cx="67" cy="173" rx="10" ry="6" transform="rotate(5 67 173)"/>
+    <text x="40" y="165" font-size="9" fill="var(--hw)">chave 3</text>
+    <!-- bateria compartilhada -->
+    <rect class="so" x="350" y="110" width="60" height="70" rx="4"/>
+    <line x1="360" y1="106" x2="400" y2="106"/><line x1="366" y1="101" x2="394" y2="101"/>
+    <text x="380" y="145" text-anchor="middle" font-size="9">9V</text>
+    <!-- fios da bateria -->
+    <line class="el" x1="305" y1="65" x2="350" y2="125"/>
+    <line class="el" x1="305" y1="125" x2="350" y2="145"/>
+    <line class="hy" x1="305" y1="185" x2="350" y2="170"/>
+    <!-- resistores -->
+    <text x="330" y="92" font-size="8" fill="var(--mu)">resistor</text>
+    <text x="330" y="100" font-size="8" fill="var(--mu)">470Ω</text>
+    <!-- legenda -->
+    <text x="230" y="248" text-anchor="middle" font-size="9">Cada LED = circuito independente. Pressionar a chave → LED acende</text>
+  </svg></div>
+  <div class="mb2"><h4>Materiais Específicos</h4>
+  <ul><li>LED vermelho, amarelo, verde</li><li>Bateria 9V + conector</li><li>3 resistores 470Ω</li><li>6 fios com jacaré</li><li>Caixa de papelão preta (corpo)</li><li>3 botões de papel alumínio</li><li>Cola quente + tinta preta</li></ul></div>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Corpo: caixa de papelão alta e estreita pintada de preto. Faça 3 furos circulares alinhados verticalmente para os LEDs.</li>
+    <li data-n="2.">Enfie os LEDs: vermelho (topo), amarelo (meio), verde (baixo). Pernas para dentro.</li>
+    <li data-n="3.">Resistores: solde ou prenda um resistor 470Ω na perna longa (+) de cada LED. Isso protege o LED da tensão de 9V.</li>
+    <li data-n="4.">3 circuitos independentes: cada LED tem seu próprio fio com jacaré ligando ao polo + da bateria (pelo resistor) e ao polo −.</li>
+    <li data-n="5.">3 interruptores de papel alumínio, um por LED. Pressionar o botão fecha o circuito daquele LED.</li>
+    <li data-n="6.">Pinte os furos com tinta: anel vermelho, amarelo e verde ao redor de cada LED. Cole coberturas de plástico colorido (de saco) para difundir a luz.</li>
+  </ul>
+  <div class="tb">Resistor 470Ω para LED com bateria 9V é obrigatório — sem ele o LED queima em segundos. (9V − 2V) ÷ 0,02A = 350Ω → use 470Ω que é o valor comercial mais próximo acima.</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 1,5–2 h</span><span class="ctag mo2">Elétrica</span></div>
+</div>
+
+<!-- BOMBA D'ÁGUA COM MOTOR -->
+<div class="pc adv" id="ca5">
+<div class="ch" onclick="tog('ca5')" tabindex="0" role="button" aria-expanded="false">
+  <span class="ci">🔄</span>
+  <div class="cm"><p class="ct">Bomba d'Água com Motor</p>
+  <p class="cd2">Avançado <span class="dots"><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot fa"></span><span class="dot"></span></span></p></div>
+  <span class="ti">▼</span>
+</div>
+<div class="cb" id="ba5"><div class="cbi">
+  <p class="cde">Motor DC aciona uma hélice dentro de um cano de PVC, criando pressão negativa que suga a água. Demonstra o princípio das bombas centrífugas.</p>
+  <div class="dw"><p class="dt">Diagrama animado — bomba centrífuga caseira</p>
+  <svg class="ps" viewBox="0 0 460 282" aria-label="Bomba d'água com motor">
+    <!-- reservatório entrada -->
+    <rect class="hf" x="20" y="60" width="80" height="120" rx="4"/>
+    <rect style="fill:#0077BB55;stroke:none" x="21" y="100" width="78" height="79" rx="0 0 4 4"/>
+    <text x="60" y="85" text-anchor="middle" class="lb" fill="var(--hw)" font-size="10">RES. A</text>
+    <!-- cano entrada -->
+    <rect class="hf" x="100" y="155" width="60" height="18" rx="4"/>
+    <path class="hy wf" d="M100,164 L40,164" stroke-dasharray="8,4"/>
+    <!-- câmara da bomba -->
+    <ellipse class="hf" cx="190" cy="130" rx="60" ry="60"/>
+    <text x="190" y="118" text-anchor="middle" class="lb" fill="var(--hw)" font-size="10">CÂMARA</text>
+    <text x="190" y="132" text-anchor="middle" font-size="9" fill="var(--hw)">PVC ou papelão</text>
+    <text x="190" y="146" text-anchor="middle" font-size="9" fill="var(--hw)">impermeabilizado</text>
+    <!-- hélice dentro da câmara girando -->
+    <g class="spin" style="transform-origin:190px 130px">
+      <ellipse class="mf" cx="190" cy="100" rx="8" ry="22"/>
+      <ellipse class="mf" cx="190" cy="100" rx="8" ry="22" transform="rotate(60 190 130)"/>
+      <ellipse class="mf" cx="190" cy="100" rx="8" ry="22" transform="rotate(120 190 130)"/>
+      <circle class="mf" cx="190" cy="130" r="8"/>
+    </g>
+    <!-- eixo motor -->
+    <line class="mo" x1="190" y1="70" x2="190" y2="40"/>
+    <!-- motor -->
+    <rect class="mf" x="163" y="15" width="54" height="28" rx="4"/>
+    <text x="190" y="30" text-anchor="middle" font-size="9" fill="var(--a3)">MOTOR DC</text>
+    <!-- fios motor -->
+    <path class="el ef" d="M163,22 Q120,22 80,50" stroke-dasharray="5,5"/>
+    <path class="el ef" d="M217,22 Q260,22 300,50" stroke-dasharray="5,5"/>
+    <!-- bateria -->
+    <rect class="so" x="60" y="28" width="22" height="45" rx="3"/>
+    <text x="71" y="50" text-anchor="middle" font-size="8">6V</text>
+    <rect class="so" x="300" y="28" width="22" height="45" rx="3"/>
+    <!-- cano saída -->
+    <rect class="hf" x="250" y="120" width="80" height="18" rx="4"/>
+    <path class="hy wf" d="M330,129 L400,129 L400,80" stroke-dasharray="8,4"/>
+    <!-- reservatório saída -->
+    <rect class="hf" x="360" y="20" width="80" height="120" rx="4"/>
+    <rect style="fill:#0077BB55;stroke:none" x="361" y="80" width="78" height="59" rx="0 0 4 4"/>
+    <text x="400" y="45" text-anchor="middle" class="lb" fill="var(--hw)" font-size="10">RES. B</text>
+    <text x="400" y="60" text-anchor="middle" font-size="9" fill="var(--hw)">(nível sobe)</text>
+    <!-- seta entrada -->
+    <line class="ac" x1="160" y1="164" x2="140" y2="164" marker-end="url(#ar)"/>
+    <text x="135" y="158" font-size="8" fill="var(--a1)">suga</text>
+    <!-- seta saída -->
+    <line style="stroke:var(--hw);fill:none;stroke-width:2" x1="250" y1="129" x2="270" y2="129" marker-end="url(#ar3)"/>
+    <text x="280" y="118" font-size="8" fill="var(--hw)">expele</text>
+    <!-- legenda -->
+    <line x1="30" y1="256" x2="430" y2="256" stroke="var(--dv)" stroke-width="0.5"/>
+    <text x="230" y="265" text-anchor="middle" font-size="9">Hélice gira → cria baixa pressão no centro → água é sugada</text>
+    <text x="230" y="274" text-anchor="middle" font-size="9">pela entrada e expelida pela saída (princípio centrífugo)</text>
+    <text x="230" y="282" text-anchor="middle" font-size="7.5" fill="var(--mu)">Impermeabilize a câmara com silicone ou parafina derretida</text>
+  </svg></div>
+  <div class="mb2"><h4>Materiais Específicos</h4>
+  <ul><li>Motor DC 6V (mais potente)</li><li>Cano PVC ½" (câmara)</li><li>Hélice de plástico de aquário</li><li>Mangueiras de entrada e saída</li><li>4 pilhas AA</li><li>2 fios com jacaré</li><li>Silicone ou parafina (impermeabilizar)</li><li>2 garrafas PET (reservatórios)</li></ul></div>
+  <p class="csl">Passo a passo</p>
+  <ul class="css2">
+    <li data-n="1.">Câmara: corte 8 cm de cano PVC ½". Tampe uma extremidade com disco de papelão + silicone. Faça um furo lateral para a saída.</li>
+    <li data-n="2.">Impermeabilize a câmara por dentro com parafina derretida ou silicone. Deixe secar 24h.</li>
+    <li data-n="3.">Hélice: use uma hélice de aquário ou recorte 4 pás de plástico rígido. Prenda no eixo do motor.</li>
+    <li data-n="4.">Encaixe o motor na tampa aberta da câmara — o eixo com a hélice deve ficar dentro do cano.</li>
+    <li data-n="5.">Conecte mangueiras: entrada na base da câmara (submersa no reservatório A), saída no furo lateral.</li>
+    <li data-n="6.">Ligue o motor pelos fios com jacaré à bateria. A hélice girando cria pressão e bombeia a água!</li>
+  </ul>
+  <div class="tb water">Se a bomba não puxar água, verifique se há ar na câmara — encha manualmente pela entrada antes de ligar o motor (processo chamado "escorvar a bomba").</div>
+</div></div>
+<div class="cf"><span class="ctime">⏱ 3–4 h</span><span class="ctag mo2">Eletro-hidráulica</span></div>
+</div>
+
+</div><!-- /grid avançado -->
+
+<!-- TIPS -->
+<p class="sl">Referência Rápida</p>
+<section class="ts">
+  <h3>Segredos dos Projetos Elétricos e Hidráulicos</h3>
+  <div class="tg">
+    <div class="ti2"><h4>Fios com jacaré</h4><p>Vermelho = positivo (+), preto = negativo (−). Sempre conecte antes de ligar a bateria. Para inverter o motor, troque os dois jacarés.</p></div>
+    <div class="ti2"><h4>Resistores são obrigatórios</h4><p>LED com bateria 9V sem resistor queima instantaneamente. Use 470Ω para LEDs comuns. A fórmula: R = (Vbat − Vled) ÷ 0,02A.</p></div>
+    <div class="ti2"><h4>Motor DC parado</h4><p>Verifique: pilhas novas? Eixo preso? Jacarés bem conectados? Motor DC velho pode ter coletor sujo — limpe com cotonete e álcool.</p></div>
+    <div class="ti2"><h4>Hidráulica sem bolhas</h4><p>Bolhas de ar enfraquecem o sistema. Preencha inclinando as seringas para cima, empurre devagar. Se houver bolha, puxe e empurre repetidamente.</p></div>
+    <div class="ti2"><h4>Impermeabilizar papelão</h4><p>Passe 2 demãos de cola branca diluída no papelão que vai contato com água. Alternativa: verniz spray ou parafina de vela derretida.</p></div>
+    <div class="ti2"><h4>Segurança elétrica</h4><p>Máximo de 9V para estes projetos — seguro para crianças. Nunca use tomada da parede. Motor DC pode esquentar — desligue após 5 min de uso.</p></div>
+  </div>
+</section>
+
+</main>
+<footer class="ft">Manual do Inventor · Edição Avançada · 14 projetos com diagramas animados · Idades 10+</footer>
+
+<script>
+function tog(id){
+  var card=document.getElementById(id);
+  var isOpen=card.classList.contains('open');
+  document.querySelectorAll('.pc.open').forEach(function(c){
+    c.classList.remove('open');
+    c.querySelector('.ch').setAttribute('aria-expanded','false');
+  });
+  if(!isOpen){
+    card.classList.add('open');
+    card.querySelector('.ch').setAttribute('aria-expanded','true');
+    setTimeout(function(){card.scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+  }
+}
+document.querySelectorAll('.ch').forEach(function(h){
+  h.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();h.click();}
+  });
+});
+</script>
